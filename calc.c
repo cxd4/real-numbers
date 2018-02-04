@@ -100,6 +100,26 @@ int rabsval(int argc, char* argv[])
     r_result = fabs(source);
     return 0;
 }
+int rceiling(int argc, char* argv[])
+{
+    real source;
+
+    if (argc < 2)
+        return -1;
+    source = strtor(argv[1]);
+    r_result = ceil(source);
+    return 0;
+}
+int rfloor(int argc, char* argv[])
+{
+    real source;
+
+    if (argc < 2)
+        return -1;
+    source = strtor(argv[1]);
+    r_result = floor(source);
+    return 0;
+}
 
 const math_operation op_functions[] = {
     radd     , iadd     , wadd     ,
@@ -109,4 +129,6 @@ const math_operation op_functions[] = {
 
     rmodulo  , imodulo  , wmodulo  ,
     rabsval  , iabsval  , wabsval  ,
+    rceiling , /* iceiling() and wceiling() are null operations. */
+    rfloor   , /* ifloor() and wfloor() are null operations. */
 };
