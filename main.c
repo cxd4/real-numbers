@@ -86,7 +86,7 @@ main(int argc, char* argv[])
 /*
  * provided to reduce EXE file size of the MS-DOS build by DJGPP
  *
- * DJGPP      :  gcc -o rc_debug.exe *.c -Os -lm -lc -Wall -pedantic
+ * DJGPP      :  gcc -o rc_debug.exe *.c -Os -Wall -pedantic -lc -lm
  * Strip with :  strip -o rc.exe rc_debug.exe -s
  *
  * Open Watcom:  wcl386 -fe=rc *.c -d0 -os -s -bcl=stub32xc
