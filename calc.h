@@ -16,6 +16,8 @@ extern int radd     (int argc, char* argv[]);
 extern int rsubtract(int argc, char* argv[]);
 extern int rmultiply(int argc, char* argv[]);
 extern int rdivide  (int argc, char* argv[]);
+extern int rmodulo  (int argc, char* argv[]);
+extern int rabsval  (int argc, char* argv[]);
 
 /*
  * high-precision integer operations
@@ -25,6 +27,8 @@ extern int iadd     (int argc, char* argv[]);
 extern int isubtract(int argc, char* argv[]);
 extern int imultiply(int argc, char* argv[]);
 extern int idivide  (int argc, char* argv[]);
+extern int imodulo  (int argc, char* argv[]);
+extern int iabsval  (int argc, char* argv[]);
 
 /*
  * higher-precision whole number operations
@@ -34,5 +38,7 @@ extern int wadd     (int argc, char* argv[]);
 extern int wsubtract(int argc, char* argv[]);
 extern int wmultiply(int argc, char* argv[]);
 extern int wdivide  (int argc, char* argv[]);
+extern int wmodulo  (int argc, char* argv[]);
+extern int wabsval  (int argc, char* argv[]);
 
 #endif

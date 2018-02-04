@@ -4,6 +4,10 @@
 #include "calc.h"
 #include <math.h>
 
+/* labs(), ldiv() */
+#include <stdlib.h>
+
+#include <limits.h>
 #include "strtor.h"
 integer i_result;
 
@@ -90,5 +94,19 @@ int imodulo(int argc, char* argv[])
         answer %= source;
     }
     i_result = answer;
+    return 0;
+}
+int iabsval(int argc, char* argv[])
+{
+    integer source;
+
+    if (argc < 2)
+        return -1;
+    source = strtoi(argv[1]);
+#ifndef SIGFPE
+    if (source == LONG_MIN)
+        return 1;
+#endif
+    i_result = labs(source);
     return 0;
 }

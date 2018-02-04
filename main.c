@@ -20,6 +20,7 @@ static const char* ops[] = {
     "mul", "imul", "wmul",
     "div", "idiv", "wdiv",
     "mod", "imod", "wmod",
+    "abs", "iabs", "wabs",
 };
 
 static int

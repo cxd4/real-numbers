@@ -73,7 +73,7 @@ int rdivide(int argc, char* argv[])
 }
 int rmodulo(int argc, char* argv[])
 {
-    real answer, source, frac;
+    real answer, source;
     register int i;
 
     if (argc < 3)
@@ -90,11 +90,23 @@ int rmodulo(int argc, char* argv[])
     r_result = answer;
     return 0;
 }
+int rabsval(int argc, char* argv[])
+{
+    real source;
+
+    if (argc < 2)
+        return -1;
+    source = strtor(argv[1]);
+    r_result = fabs(source);
+    return 0;
+}
 
 const math_operation op_functions[] = {
     radd     , iadd     , wadd     ,
     rsubtract, isubtract, wsubtract,
     rmultiply, imultiply, wmultiply,
     rdivide  , idivide  , wdivide  ,
+
     rmodulo  , imodulo  , wmodulo  ,
+    rabsval  , iabsval  , wabsval  ,
 };
