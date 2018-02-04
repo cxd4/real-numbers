@@ -4,7 +4,13 @@
 #include <stdlib.h>
 #include "strtor.h"
 
-double strtor(const char* str)
+#include "calc.h"
+real            r_result;
+integer         i_result;
+whole_number    w_result;
+
+real
+strtor(const char* str)
 {
     register double result;
 
@@ -22,7 +28,8 @@ double strtor(const char* str)
     return (result);
 }
 
-long strtoi(const char* str)
+integer
+strtoi(const char* str)
 {
     register long result;
 
@@ -40,7 +47,8 @@ long strtoi(const char* str)
     return (result);
 }
 
-unsigned long strtow(const char* str)
+whole_number
+strtow(const char* str)
 {
     register unsigned long result;
 

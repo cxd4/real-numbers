@@ -12,6 +12,7 @@ static void FPU_exception_handler(int signal_code)
 } /* overflow, division by zero, etc. */
 
 #include "calc.h"
+#include "strtor.h"
 
 static const char* ops[] = {
     "add", "iadd", "wadd",
@@ -28,6 +29,7 @@ f_execute(int argc, char* argv[])
 
     for (i = 0; i < limit; i++) {
         int recovered_from_exception;
+        int error_code;
 
         if (strcmp(argv[0], ops[i]))
             continue;
@@ -37,7 +39,18 @@ f_execute(int argc, char* argv[])
             signal(SIGFPE, FPU_exception_handler);
             continue; /* Try searching for another function to execute. */
         }
-        return op_functions[i](argc, &argv[0]);
+        error_code = op_functions[i](argc, &argv[0]);
+        switch (ops[i][0]) {
+        case 'i':
+            fprintf(stdout, "%li\n", i_result);
+            break;
+        case 'w':
+            fprintf(stdout, "%lu\n", w_result);
+            break;
+        default:
+            fprintf(stdout, "%g\n", r_result);
+        }
+        return (error_code);
     }
     return 1;
 }

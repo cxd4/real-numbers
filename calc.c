@@ -1,11 +1,11 @@
 #include <float.h>
 #include <signal.h>
 
-#include "strtor.h"
-#include <stdio.h>
-
 #include "calc.h"
 #include <math.h>
+
+#include "strtor.h"
+real r_result;
 
 int add(int argc, char* argv[])
 {
@@ -19,7 +19,7 @@ int add(int argc, char* argv[])
         source = strtor(argv[i]);
         answer += source;
     }
-    printf("%g\n", answer);
+    r_result = answer;
     return 0;
 }
 int subtract(int argc, char* argv[])
@@ -34,7 +34,7 @@ int subtract(int argc, char* argv[])
         source = strtor(argv[i]);
         answer -= source;
     }
-    printf("%g\n", answer);
+    r_result = answer;
     return 0;
 }
 int multiply(int argc, char* argv[])
@@ -49,7 +49,7 @@ int multiply(int argc, char* argv[])
         source = strtor(argv[i]);
         answer *= source;
     }
-    printf("%g\n", answer);
+    r_result = answer;
     return 0;
 }
 int divide(int argc, char* argv[])
@@ -68,7 +68,7 @@ int divide(int argc, char* argv[])
 #endif
         answer /= source;
     }
-    printf("%g\n", answer);
+    r_result = answer;
     return 0;
 }
 

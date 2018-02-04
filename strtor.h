@@ -52,4 +52,13 @@ strtow(const char* str);
  * (...Except maybe ifdef _WIN64, which is LLP64 in MS' infinite wisdom.)
  */
 
+/*
+ * Store the last answer calculated for use in on-screen display later
+ * as well as possible sourcing in future calculations.
+ */
+#include "calc.h"
+extern real             r_result;
+extern integer          i_result;
+extern whole_number     w_result;
+
 #endif

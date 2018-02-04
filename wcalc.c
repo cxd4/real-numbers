@@ -1,11 +1,11 @@
 #include <float.h>
 #include <signal.h>
 
-#include "strtor.h"
-#include <stdio.h>
-
 #include "calc.h"
 #include <math.h>
+
+#include "strtor.h"
+whole_number w_result;
 
 int wadd(int argc, char* argv[])
 {
@@ -19,7 +19,7 @@ int wadd(int argc, char* argv[])
         source = strtow(argv[i]);
         answer += source;
     }
-    printf("%lu\n", answer);
+    w_result = answer;
     return 0;
 }
 int wsubtract(int argc, char* argv[])
@@ -34,7 +34,7 @@ int wsubtract(int argc, char* argv[])
         source = strtow(argv[i]);
         answer -= source;
     }
-    printf("%lu\n", answer);
+    w_result = answer;
     return 0;
 }
 int wmultiply(int argc, char* argv[])
@@ -49,7 +49,7 @@ int wmultiply(int argc, char* argv[])
         source = strtow(argv[i]);
         answer *= source;
     }
-    printf("%lu\n", answer);
+    w_result = answer;
     return 0;
 }
 int wdivide(int argc, char* argv[])
@@ -70,6 +70,6 @@ int wdivide(int argc, char* argv[])
 #endif
         answer /= source;
     }
-    printf("%lu\n", answer);
+    w_result = answer;
     return 0;
 }
