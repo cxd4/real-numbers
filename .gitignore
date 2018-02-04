@@ -44,6 +44,11 @@ cc
 *.x86_64
 *.hex
 
+# DOS executable objects
+*.EXE
+*.COM
+*.OBJ
+
 # Debug files
 *.dSYM/
 *.su
