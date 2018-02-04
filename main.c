@@ -42,6 +42,8 @@ f_execute(int argc, char* argv[])
             continue; /* Try searching for another function to execute. */
         }
         error_code = op_functions[i](argc, &argv[0]);
+        if (error_code != 0)
+            return (error_code);
         switch (ops[i][0]) {
         case 'i':
             fprintf(stdout, "%li\n", i_result);
