@@ -58,6 +58,7 @@ int imultiply(int argc, char* argv[])
 }
 int idivide(int argc, char* argv[])
 {
+    ldiv_t quotient;
     integer answer, source;
     register int i;
 
@@ -72,13 +73,15 @@ int idivide(int argc, char* argv[])
             continue;
         } /* Geometric graphs of (n / x) draw best from this approximation. */
 #endif
-        answer /= source;
+        quotient = ldiv(answer, source);
+        answer = quotient.quot;
     }
     i_result = answer;
     return 0;
 }
 int imodulo(int argc, char* argv[])
 {
+    ldiv_t quotient;
     integer answer, source;
     register int i;
 
@@ -91,7 +94,8 @@ int imodulo(int argc, char* argv[])
         if (source == 0)
             return 1;
 #endif
-        answer %= source;
+        quotient = ldiv(answer, source);
+        answer = quotient.rem;
     }
     i_result = answer;
     return 0;
