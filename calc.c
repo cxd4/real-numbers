@@ -7,7 +7,7 @@
 #include "strtor.h"
 real r_result;
 
-int add(int argc, char* argv[])
+int radd(int argc, char* argv[])
 {
     real answer, source;
     register int i;
@@ -22,7 +22,7 @@ int add(int argc, char* argv[])
     r_result = answer;
     return 0;
 }
-int subtract(int argc, char* argv[])
+int rsubtract(int argc, char* argv[])
 {
     real answer, source;
     register int i;
@@ -37,7 +37,7 @@ int subtract(int argc, char* argv[])
     r_result = answer;
     return 0;
 }
-int multiply(int argc, char* argv[])
+int rmultiply(int argc, char* argv[])
 {
     real answer, source;
     register int i;
@@ -52,7 +52,7 @@ int multiply(int argc, char* argv[])
     r_result = answer;
     return 0;
 }
-int divide(int argc, char* argv[])
+int rdivide(int argc, char* argv[])
 {
     real answer, source;
     register int i;
@@ -73,8 +73,8 @@ int divide(int argc, char* argv[])
 }
 
 const math_operation op_functions[] = {
-     add     , iadd     , wadd     ,
-     subtract, isubtract, wsubtract,
-     multiply, imultiply, wmultiply,
-     divide  , idivide  , wdivide  ,
+    radd     , iadd     , wadd     ,
+    rsubtract, isubtract, wsubtract,
+    rmultiply, imultiply, wmultiply,
+    rdivide  , idivide  , wdivide  ,
 };

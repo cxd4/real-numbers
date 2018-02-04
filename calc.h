@@ -12,10 +12,10 @@ extern const math_operation op_functions[];
  * operations on any real numbers that fit the CPU's floating-point precision
  */
 typedef double          real;
-extern int add     (int argc, char* argv[]);
-extern int subtract(int argc, char* argv[]);
-extern int multiply(int argc, char* argv[]);
-extern int divide  (int argc, char* argv[]);
+extern int radd     (int argc, char* argv[]);
+extern int rsubtract(int argc, char* argv[]);
+extern int rmultiply(int argc, char* argv[]);
+extern int rdivide  (int argc, char* argv[]);
 
 /*
  * high-precision integer operations
