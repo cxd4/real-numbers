@@ -71,10 +71,30 @@ int rdivide(int argc, char* argv[])
     r_result = answer;
     return 0;
 }
+int rmodulo(int argc, char* argv[])
+{
+    real answer, source, frac;
+    register int i;
+
+    if (argc < 3)
+        return -1;
+    answer = strtor(argv[1]);
+    for (i = 2; i < argc; i++) {
+        source = strtor(argv[i]);
+#ifndef SIGFPE
+        if (source == 0)
+            return 1;
+#endif
+        answer = fmod(answer, source);
+    }
+    r_result = answer;
+    return 0;
+}
 
 const math_operation op_functions[] = {
     radd     , iadd     , wadd     ,
     rsubtract, isubtract, wsubtract,
     rmultiply, imultiply, wmultiply,
     rdivide  , idivide  , wdivide  ,
+    rmodulo  , imodulo  , wmodulo  ,
 };

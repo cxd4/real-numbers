@@ -73,3 +73,22 @@ int wdivide(int argc, char* argv[])
     w_result = answer;
     return 0;
 }
+int wmodulo(int argc, char* argv[])
+{
+    whole_number answer, source;
+    register int i;
+
+    if (argc < 3)
+        return -1;
+    answer = strtow(argv[1]);
+    for (i = 2; i < argc; i++) {
+        source = strtow(argv[i]);
+#ifndef SIGFPE
+        if (source == 0)
+            return 1;
+#endif
+        answer %= source;
+    }
+    w_result = answer;
+    return 0;
+}
