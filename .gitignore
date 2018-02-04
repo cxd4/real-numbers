@@ -1,3 +1,11 @@
+# some possible file names for the target executable
+realcalc
+execute
+calc
+rc
+exec
+cc
+
 # Prerequisites
 *.d
 
