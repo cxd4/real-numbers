@@ -82,3 +82,26 @@ main(int argc, char* argv[])
     fputs("Unknown error return status.\n", stderr);
     return -2;
 }
+
+/*
+ * provided to reduce EXE file size of the MS-DOS build by DJGPP
+ *
+ * DJGPP      :  gcc -o rc_debug.exe *.c -Os -lm -lc -Wall -pedantic
+ * Strip with :  strip -o rc.exe rc_debug.exe -s
+ *
+ * Open Watcom:  wcl386 -fe=rc *.c -d0 -os -s -bcl=stub32xc
+ */
+#ifdef __DJGPP__
+#include <crt0.h>
+
+char**
+__crt0_glob_function(char* arg)
+{
+    return NULL;
+}
+void
+__crt0_load_environment_file(char* progname)
+{
+    return;
+}
+#endif
