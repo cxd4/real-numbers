@@ -33,7 +33,7 @@ f_execute(int argc, char* argv[])
         int recovered_from_exception;
         int error_code;
 
-        if (strcmp(argv[0], ops[i]))
+        if (strncmp(argv[0], ops[i], strlen(ops[i])) != 0)
             continue;
         signal(SIGFPE, FPU_exception_handler);
         recovered_from_exception = setjmp(CPU_state);
