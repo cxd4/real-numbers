@@ -153,6 +153,32 @@ int rbexp(int argc, char* argv[])
     r_result = ldexp(significand, power);
     return 0;
 }
+int rroot(int argc, char* argv[])
+{
+    real answer, source;
+    real index;
+    int is_odd_root, negative_radicand_hack; /* Make root(-8, 3) == cbrt(-8). */
+    register int i;
+
+    if (argc < 3)
+        return -1;
+    answer = strtor(argv[1]);
+    for (i = 2; i < argc; i++) {
+        index = strtor(argv[i]);
+        source = index;
+        while (source != floor(source))
+            source *= 10;
+        is_odd_root = ((integer)(source) % 2 != 0) ? 1 : 0;
+        negative_radicand_hack = is_odd_root && (answer < 0 ? 1 : 0);
+        if (negative_radicand_hack)
+            answer = -answer;
+        answer = pow(answer, 1 / index); /* pow(-8, 1/3) is NaN; cbrt(-8) = 2 */
+        if (negative_radicand_hack)
+            answer = -answer;
+    }
+    r_result = answer;
+    return 0;
+}
 
 const math_operation op_functions[] = {
     radd     , iadd     , wadd     ,
@@ -167,4 +193,5 @@ const math_operation op_functions[] = {
 
     rpower   , ipower   , wpower   ,
     rbexp    , ibexp    , wbexp    ,
+    rroot    ,
 };
