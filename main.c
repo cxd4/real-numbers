@@ -14,7 +14,7 @@ static void FPU_exception_handler(int signal_code)
 #include "calc.h"
 #include "strtor.h"
 
-static const char* ops[] = {
+static const char ops[][8] = {
     "add", "iadd", "wadd",
     "sub", "isub", "wsub",
     "mul", "imul", "wmul",
