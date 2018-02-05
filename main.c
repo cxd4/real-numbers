@@ -21,11 +21,11 @@ static const char* ops[] = {
     "div", "idiv", "wdiv",
     "mod", "imod", "wmod",
     "abs", "iabs", "wabs",
-    "ceil",
-    "floor",
+    "ceil", "iceil", "wceil",
+    "floor", "ifloor", "wfloor",
     "pow", "ipow", "wpow",
     "bexp", "ibexp", "wbexp",
-    "root",
+    "root", "iroot", "wroot",
     "bradix", "ibradix", "wbradix",
 };
 
@@ -74,14 +74,17 @@ main(int argc, char* argv[])
         return -4;
     }
     switch (f_execute(argc - 1, &argv[1])) {
+    case -1:
+        fputs("Insufficient operands.\n", stderr);
+        return -1;
     case  0:
         return 0;
     case +1:
         fprintf(stderr, "Cannot execute operation \"%s\".\n", argv[1]);
         return 1;
-    case -1:
-        fputs("Insufficient operands.\n", stderr);
-        return -1;
+    case +2:
+        fputs("Requested null or undefined operation.\n", stderr);
+        return 2;
     default:
         break;
     }

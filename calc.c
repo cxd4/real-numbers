@@ -7,6 +7,28 @@
 #include "strtor.h"
 real r_result;
 
+static int rnull(int argc, char* argv[])
+{
+    r_result = 0;
+    if (argc >= 2)
+        r_result = strtor(argv[1]);
+    return 2;
+}
+static int inull(int argc, char* argv[])
+{
+    i_result = 0;
+    if (argc >= 2)
+        i_result = strtoi(argv[1]);
+    return 2;
+}
+static int wnull(int argc, char* argv[])
+{
+    w_result = 0;
+    if (argc >= 2)
+        w_result = strtow(argv[1]);
+    return 2;
+}
+
 int radd(int argc, char* argv[])
 {
     real answer, source;
@@ -199,12 +221,12 @@ const math_operation op_functions[] = {
     rdivide  , idivide  , wdivide  ,
 
     rmodulo  , imodulo  , wmodulo  ,
-    rabsval  , iabsval  , wabsval  ,
-    rceiling , /* iceiling() and wceiling() are null operations. */
-    rfloor   , /* ifloor() and wfloor() are null operations. */
+    rabsval  , iabsval  , wnull    ,
+    rceiling , inull    , wnull    ,
+    rfloor   , inull    , wnull    ,
 
     rpower   , ipower   , wpower   ,
     rbexp    , ibexp    , wbexp    ,
-    rroot    ,
+    rroot    , inull    , inull    ,
     rbradix  , ibradix  , wbradix  ,
 };

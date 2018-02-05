@@ -92,13 +92,6 @@ int wmodulo(int argc, char* argv[])
     w_result = answer;
     return 0;
 }
-int wabsval(int argc, char* argv[])
-{
-    if (argc < 2)
-        return -1;
-    w_result = strtow(argv[1]);
-    return 0;
-} /* basically a null operation but useful to debug strtoul() */
 int wpower(int argc, char* argv[])
 {
     whole_number answer;
