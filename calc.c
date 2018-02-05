@@ -182,9 +182,13 @@ int rroot(int argc, char* argv[])
     int is_odd_root, negative_radicand_hack; /* Make root(-8, 3) == cbrt(-8). */
     register int i;
 
-    if (argc < 3)
+    if (argc < 2)
         return -1;
     answer = strtor(argv[1]);
+    if (argc < 3) {
+        r_result = sqrt(answer);
+        return 0;
+    }
     for (i = 2; i < argc; i++) {
         index = strtor(argv[i]);
         source = index;
