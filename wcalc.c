@@ -118,3 +118,25 @@ int wpower(int argc, char* argv[])
     w_result = answer;
     return 0;
 }
+int wbexp(int argc, char* argv[])
+{
+    whole_number significand;
+    integer source;
+    unsigned int shift_amount;
+
+    if (argc < 3)
+        return -1;
+    significand = strtow(argv[1]);
+    source      = strtoi(argv[2]);
+#if (LONG_MAX > INT_MAX || LONG_MIN < INT_MIN)
+    if (source < INT_MIN || source > INT_MAX)
+        return 1; /* exceeded domain boundaries if sizeof(int) < sizeof(long) */
+#endif
+    shift_amount = (unsigned int)(source < 0 ? -source : +source);
+    w_result = significand;
+    if (source < 0)
+        w_result >>= shift_amount;
+    else
+        w_result <<= shift_amount;
+    return 0;
+}

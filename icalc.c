@@ -145,3 +145,29 @@ int ipower(int argc, char* argv[])
     }
     return 0;
 }
+int ibexp(int argc, char* argv[])
+{
+    integer significand, source;
+    int power;
+
+    if (argc < 3)
+        return -1;
+    significand = strtoi(argv[1]);
+    source      = strtoi(argv[2]);
+#if (LONG_MAX > INT_MAX || LONG_MIN < INT_MIN)
+    if (source < INT_MIN || source > INT_MAX)
+        return 1; /* exceeded domain boundaries if sizeof(int) < sizeof(long) */
+#endif
+    power = (int)source;
+    source = significand;
+    if (power < 0) {
+        do
+            source /= 2;
+        while (++power < 0);
+    } else {
+        while (power-- > 0)
+            source *= 2;
+    }
+    i_result = source;
+    return 0;
+}

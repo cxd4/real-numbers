@@ -21,6 +21,7 @@ extern int rabsval  (int argc, char* argv[]);
 extern int rceiling (int argc, char* argv[]);
 extern int rfloor   (int argc, char* argv[]);
 extern int rpower   (int argc, char* argv[]);
+extern int rbexp    (int argc, char* argv[]);
 
 /*
  * high-precision integer operations
@@ -35,6 +36,7 @@ extern int iabsval  (int argc, char* argv[]);
 /* null operation:  iceiling() */
 /* null operation:  ifloor() */
 extern int ipower   (int argc, char* argv[]);
+extern int ibexp    (int argc, char* argv[]);
 
 /*
  * higher-precision whole number operations
@@ -49,5 +51,6 @@ extern int wabsval  (int argc, char* argv[]);
 /* null operation:  wceiling() */
 /* null operation:  wfloor() */
 extern int wpower   (int argc, char* argv[]);
+extern int wbexp    (int argc, char* argv[]);
 
 #endif

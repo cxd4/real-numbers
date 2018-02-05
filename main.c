@@ -24,6 +24,7 @@ static const char* ops[] = {
     "ceil",
     "floor",
     "pow", "ipow", "wpow",
+    "bexp", "ibexp", "wbexp",
 };
 
 static int

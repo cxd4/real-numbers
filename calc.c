@@ -135,6 +135,24 @@ int rpower(int argc, char* argv[])
     r_result = answer;
     return 0;
 }
+int rbexp(int argc, char* argv[])
+{
+    real significand;
+    integer source;
+    int power;
+
+    if (argc < 3)
+        return -1;
+    significand = strtor(argv[1]);
+    source      = strtoi(argv[2]);
+#if (LONG_MAX > INT_MAX || LONG_MIN < INT_MIN)
+    if (source < INT_MIN || source > INT_MAX)
+        return 1; /* exceeded domain boundaries if sizeof(int) < sizeof(long) */
+#endif
+    power = (int)source;
+    r_result = ldexp(significand, power);
+    return 0;
+}
 
 const math_operation op_functions[] = {
     radd     , iadd     , wadd     ,
@@ -148,4 +166,5 @@ const math_operation op_functions[] = {
     rfloor   , /* ifloor() and wfloor() are null operations. */
 
     rpower   , ipower   , wpower   ,
+    rbexp    , ibexp    , wbexp    ,
 };
