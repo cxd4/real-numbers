@@ -56,4 +56,12 @@ extern int wpower   (int argc, char* argv[]);
 extern int wbexp    (int argc, char* argv[]);
 /* not really useful:  wroot() */
 
+/*
+ * Store the last answer calculated for use in on-screen display later
+ * as well as possible sourcing in future calculations.
+ */
+extern real             r_result;
+extern integer          i_result;
+extern whole_number     w_result;
+
 #endif

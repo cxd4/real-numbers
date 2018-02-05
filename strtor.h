@@ -13,26 +13,27 @@
 #define strtow(s)       strtoul((s), NULL, 0)
 #endif
 
+#include "calc.h"
 
 /*
  * Interpret strings as floating-point real decimal numbers.
  * e.g. "3" as 3, "03." as 3, "3.14" as 3.14
  */
-extern double
+extern real
 strtor(const char* str);
 
 /*
  * Interpret strings as integer real numbers (using the longest C precision).
  * e.g. "3" as 3, "0x03" as 3, "-0x3.14" as -3
  */
-extern long /* or long long, if you believe in C99 */
+extern integer
 strtoi(const char* str);
 
 /*
- * Interpret strings as whole numbers, allowing double precision due to the
+ * Interpret strings as whole numbers, allowing extra precision due to the
  * invalidity of negative integers under the definition of a whole number.
  */
-extern unsigned long
+extern whole_number
 strtow(const char* str);
 
 
@@ -51,14 +52,5 @@ strtow(const char* str);
  * There is no interest in writing "long long" anywhere, so go away!
  * (...Except maybe ifdef _WIN64, which is LLP64 in MS' infinite wisdom.)
  */
-
-/*
- * Store the last answer calculated for use in on-screen display later
- * as well as possible sourcing in future calculations.
- */
-#include "calc.h"
-extern real             r_result;
-extern integer          i_result;
-extern whole_number     w_result;
 
 #endif

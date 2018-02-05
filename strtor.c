@@ -4,11 +4,6 @@
 #include <stdlib.h>
 #include "strtor.h"
 
-#include "calc.h"
-real            r_result;
-integer         i_result;
-whole_number    w_result;
-
 real
 strtor(const char* str)
 {
