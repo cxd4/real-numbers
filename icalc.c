@@ -114,3 +114,34 @@ int iabsval(int argc, char* argv[])
     i_result = labs(source);
     return 0;
 }
+int ipower(int argc, char* argv[])
+{
+    ldiv_t quotient;
+    integer answer;
+    integer base, power;
+    register int i;
+
+    if (argc < 2)
+        return -1;
+    base = strtoi(argv[1]);
+    power = 1;
+    for (i = 2; i < argc; i++)
+        power *= strtoi(argv[i]);
+
+    if (power < 0) {
+        quotient.quot = 0; /* (b ^ -x) = 1/(b ^ x):  truncated to (int) = 0 */
+        if (labs(base) == 1 && power == -1) /* ...unless base = +/- 1 */
+            quotient.quot = base; /* 1 / -1 == -1; 1 / +1 == +1 */
+#ifdef SIGFPE
+        else if (base == 0)
+            quotient = ldiv(1L, base); /* one divided by zero */
+#endif
+        i_result = quotient.quot;
+    } else {
+        answer = +1;
+        while (power-- > 0)
+            answer *= base;
+        i_result = answer;
+    }
+    return 0;
+}

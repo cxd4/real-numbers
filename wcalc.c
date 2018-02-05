@@ -99,3 +99,22 @@ int wabsval(int argc, char* argv[])
     w_result = strtow(argv[1]);
     return 0;
 } /* basically a null operation but useful to debug strtoul() */
+int wpower(int argc, char* argv[])
+{
+    whole_number answer;
+    whole_number base, power;
+    register int i;
+
+    if (argc < 2)
+        return -1;
+    base = strtow(argv[1]);
+    power = 1;
+    for (i = 2; i < argc; i++)
+        power *= strtow(argv[i]);
+
+    answer = +1;
+    while (power-- != 0)
+        answer *= base;
+    w_result = answer;
+    return 0;
+}

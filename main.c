@@ -23,6 +23,7 @@ static const char* ops[] = {
     "abs", "iabs", "wabs",
     "ceil",
     "floor",
+    "pow", "ipow", "wpow",
 };
 
 static int
