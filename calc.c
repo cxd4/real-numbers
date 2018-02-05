@@ -179,6 +179,18 @@ int rroot(int argc, char* argv[])
     r_result = answer;
     return 0;
 }
+int rbradix(int argc, char* argv[])
+{
+    real significand, source;
+    int power;
+
+    if (argc < 2)
+        return -1;
+    source = strtor(argv[1]);
+    significand = frexp(source, &power);
+    r_result = significand;
+    return 0;
+}
 
 const math_operation op_functions[] = {
     radd     , iadd     , wadd     ,
@@ -194,4 +206,5 @@ const math_operation op_functions[] = {
     rpower   , ipower   , wpower   ,
     rbexp    , ibexp    , wbexp    ,
     rroot    ,
+    rbradix  , ibradix  , wbradix  ,
 };

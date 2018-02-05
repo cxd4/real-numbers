@@ -171,3 +171,15 @@ int ibexp(int argc, char* argv[])
     i_result = source;
     return 0;
 }
+int ibradix(int argc, char* argv[])
+{
+    real source;
+    int power;
+
+    if (argc < 2)
+        return -1;
+    source = strtor(argv[1]);
+    frexp(source, &power);
+    i_result = power;
+    return 0;
+}

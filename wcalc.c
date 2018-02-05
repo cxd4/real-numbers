@@ -140,3 +140,19 @@ int wbexp(int argc, char* argv[])
         w_result <<= shift_amount;
     return 0;
 }
+int wbradix(int argc, char* argv[])
+{
+    real significand, source;
+    int power;
+
+    if (argc < 1)
+        return -1;
+    w_result = FLT_RADIX;
+    if (argc < 3)
+        return 0; /* Specify an optional argv[1] to test frexp() reciprocity. */
+    source = strtor(argv[1]);
+    significand = frexp(source, &power);
+    if (pow(FLT_RADIX, power) * significand != source)
+        return 1; /* Test failed...but why? */
+    return 0;
+}
