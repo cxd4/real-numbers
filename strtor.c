@@ -44,8 +44,9 @@ strtor(const char* str)
         result = (result < 0) ? -pow(-result, 1.0 / 3) : pow(result, 1.0 / 3);
     } else {
         result = strtod(str, &new_offset);
-        if (*new_offset != '\0')
-            result *= strtor(new_offset);
+        if (new_offset != str)
+            if (*new_offset != '\0')
+                result *= strtor(new_offset);
     }
     if (errno) {
         fprintf(
