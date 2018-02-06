@@ -7,6 +7,16 @@
 #include <math.h>
 #include "strtor.h"
 
+static real pi(void)
+{
+    static real pi_approximation;
+
+    if (pi_approximation != 0)
+        return (pi_approximation);
+    pi_approximation = 3.14159265358979323846264338327950288419;
+    return (pi_approximation);
+}
+
 real
 strtor(const char* str)
 {
@@ -21,6 +31,11 @@ strtor(const char* str)
             result = exp(1);
         else
             result = exp(strtor(str + 1));
+    } else if (str[0] == 'p' && str[1] == 'i') {
+        if (str[2] == '\0')
+            result = pi();
+        else
+            result = pow(pi(), strtor(str + 2));
     } else {
         result = strtod(str, NULL);
     }
