@@ -21,6 +21,7 @@ real
 strtor(const char* str)
 {
     register double result;
+    char* new_offset;
 
     if (errno) {
         fprintf(stderr, "Unchecked errno already set to %i.\n", errno);
@@ -37,7 +38,9 @@ strtor(const char* str)
         else
             result = pow(pi(), strtor(str + 2));
     } else {
-        result = strtod(str, NULL);
+        result = strtod(str, &new_offset);
+        if (*new_offset != '\0')
+            result *= strtor(new_offset);
     }
     if (errno) {
         fprintf(
