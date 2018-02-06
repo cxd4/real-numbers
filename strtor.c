@@ -37,6 +37,11 @@ strtor(const char* str)
             result = pi();
         else
             result = pow(pi(), strtor(str + 2));
+    } else if (strncmp(str, "sqrt", 4) == 0) {
+        result = sqrt(strtor(str + 4));
+    } else if (strncmp(str, "cbrt", 4) == 0) {
+        result = strtor(str + 4);
+        result = (result < 0) ? -pow(-result, 1.0 / 3) : pow(result, 1.0 / 3);
     } else {
         result = strtod(str, &new_offset);
         if (*new_offset != '\0')
