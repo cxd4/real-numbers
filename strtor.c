@@ -53,6 +53,7 @@ strtor(const char* str)
             stderr, "Problem %i converting %s to %f.\n",
             errno, str, result
         );
+        errno = 0;
     }
     return (result);
 }
@@ -72,6 +73,7 @@ strtoi(const char* str)
             stderr, "Problem %i converting %s to %li.\n",
             errno, str, result
         );
+        errno = 0;
     }
     return (result);
 }
@@ -91,6 +93,7 @@ strtow(const char* str)
             stderr, "Problem %i converting %s to %lu.\n",
             errno, str, result
         );
+        errno = 0;
     }
     return (result);
 }
