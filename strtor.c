@@ -10,10 +10,19 @@
 static real pi(void)
 {
     static real pi_approximation;
+    real base;
+    register real old_approximation;
 
     if (pi_approximation != 0)
         return (pi_approximation);
-    pi_approximation = 3.14159265358979323846264338327950288419;
+    base = 0;
+    pi_approximation = 1;
+    do {
+        old_approximation = pi_approximation;
+        base = sqrt(base + 2);
+        pi_approximation *= base / 2;
+    } while (pi_approximation != old_approximation); /* no more precision */
+    pi_approximation = 2 / pi_approximation;
     return (pi_approximation);
 }
 
