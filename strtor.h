@@ -53,4 +53,13 @@ strtow(const char* str);
  * (...Except maybe ifdef _WIN64, which is LLP64 in MS' infinite wisdom.)
  */
 
+/*
+ * Use puts()-style text printing using this function, which actually uses
+ * fprintf() like the rest of the program to avoid linking in the puts() or
+ * fputs() functions to keep the program file size down for platforms where
+ * the program is built by statically linking in the C library functions.
+ */
+extern int
+puterr(const char* message);
+
 #endif

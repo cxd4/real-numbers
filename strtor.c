@@ -97,3 +97,9 @@ strtow(const char* str)
     }
     return (result);
 }
+
+int
+puterr(const char* message)
+{
+    return fprintf(stderr, "%s\n", message);
+}

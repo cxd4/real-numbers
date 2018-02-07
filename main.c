@@ -75,12 +75,11 @@ main(int argc, char* argv[])
 {
     if (argc < 2) {
         fprintf(stderr, "%s [operands]\n", argv[0]);
-        getchar();
         return -4;
     }
     switch (f_execute(argc - 1, &argv[1])) {
     case -1:
-        fputs("Insufficient operands.\n", stderr);
+        puterr("Insufficient operands.");
         return -1;
     case  0:
         return 0;
@@ -88,12 +87,12 @@ main(int argc, char* argv[])
         fprintf(stderr, "Cannot execute operation \"%s\".\n", argv[1]);
         return 1;
     case +2:
-        fputs("Requested null or undefined operation.\n", stderr);
+        puterr("Requested null or undefined operation.");
         return 2;
     default:
         break;
     }
-    fputs("Unknown error return status.\n", stderr);
+    puterr("Unknown error return status.");
     return -2;
 }
 
