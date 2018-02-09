@@ -149,3 +149,24 @@ int wbradix(int argc, char* argv[])
         return 1; /* Test failed...but why? */
     return 0;
 }
+int wfact(int argc, char* argv[])
+{
+    whole_number answer, old_answer;
+    register whole_number i, j, n;
+
+    if (argc < 2)
+        return -1;
+    n = strtow(argv[1]);
+
+    answer = 1;
+    for (i = 1; i <= n; i++) {
+        old_answer = answer;
+        for (j = 1; j < i; j++) {
+            answer += old_answer;
+            if (answer < old_answer)
+                return 1; /* unsigned overflow */
+        }
+    }
+    w_result = answer;
+    return 0;
+}

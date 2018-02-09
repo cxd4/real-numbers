@@ -217,6 +217,23 @@ int rbradix(int argc, char* argv[])
     r_result = significand;
     return 0;
 }
+int rfact(int argc, char* argv[])
+{
+    real answer;
+    register real i, n;
+
+    if (argc < 2)
+        return -1;
+    n = strtor(argv[1]);
+    if (n < 0)
+        return 1; /* factorial undefined for negative numbers */
+
+    answer = 1;
+    for (i = 1; i < n + 1; i += 1)
+        answer *= i;
+    r_result = answer;
+    return 0;
+}
 
 const math_operation op_functions[] = {
     radd     , iadd     , wadd     ,
@@ -233,4 +250,6 @@ const math_operation op_functions[] = {
     rbexp    , ibexp    , wbexp    ,
     rroot    , inull    , inull    ,
     rbradix  , ibradix  , wbradix  ,
+
+    rfact    , inull    , wfact    ,
 };

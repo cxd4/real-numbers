@@ -24,14 +24,18 @@ static const char ops[][8] = {
     "sub", "isub", "wsub",
     "mul", "imul", "wmul",
     "div", "idiv", "wdiv",
+
     "mod", "imod", "wmod",
     "abs", "iabs", "wabs",
     "ceil", "iceil", "wceil",
     "floor", "ifloor", "wfloor",
+
     "pow", "ipow", "wpow",
     "bexp", "ibexp", "wbexp",
     "root", "iroot", "wroot",
     "bradix", "ibradix", "wbradix",
+
+    "fact", "ifact", "wfact",
 };
 
 static int
