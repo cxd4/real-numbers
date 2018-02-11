@@ -170,3 +170,14 @@ int wfact(int argc, char* argv[])
     w_result = answer;
     return 0;
 }
+int wcomp(int argc, char* argv[])
+{
+    whole_number n0, n1;
+
+    if (argc < 3)
+        return -1;
+    n0 = strtow(argv[1]);
+    n1 = strtow(argv[2]);
+    w_result = (n0 < n1) ? 1 : 0;
+    return 0;
+}

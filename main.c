@@ -36,6 +36,7 @@ static const char ops[][8] = {
     "bradix", "ibradix", "wbradix",
 
     "fact", "ifact", "wfact",
+    "comp", "icomp", "wcomp",
 };
 
 static int

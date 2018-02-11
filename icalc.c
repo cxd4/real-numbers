@@ -183,3 +183,19 @@ int ibradix(int argc, char* argv[])
     i_result = power;
     return 0;
 }
+int icomp(int argc, char* argv[])
+{
+    integer n0, n1;
+
+    if (argc < 3)
+        return -1;
+    n0 = strtoi(argv[1]);
+    n1 = strtoi(argv[2]);
+    if (n0 < n1)
+        i_result = -1;
+    else if (n0 == n1)
+        i_result =  0;
+    else
+        i_result = +1;
+    return 0;
+}

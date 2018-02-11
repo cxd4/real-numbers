@@ -25,6 +25,7 @@ extern int rbexp    (int argc, char* argv[]);
 extern int rroot    (int argc, char* argv[]);
 extern int rbradix  (int argc, char* argv[]);
 extern int rfact    (int argc, char* argv[]);
+extern int rcomp    (int argc, char* argv[]);
 
 /*
  * high-precision integer operations
@@ -43,6 +44,7 @@ extern int ibexp    (int argc, char* argv[]);
 /* not really useful:  iroot() */
 extern int ibradix  (int argc, char* argv[]);
 /* not really useful:  ifact() */
+extern int icomp    (int argc, char* argv[]);
 
 /*
  * higher-precision whole number operations
@@ -61,6 +63,7 @@ extern int wbexp    (int argc, char* argv[]);
 /* not really useful:  wroot() */
 extern int wbradix  (int argc, char* argv[]);
 extern int wfact    (int argc, char* argv[]);
+extern int wcomp    (int argc, char* argv[]);
 
 /*
  * Store the last answer calculated for use in on-screen display later

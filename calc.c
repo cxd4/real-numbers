@@ -234,6 +234,24 @@ int rfact(int argc, char* argv[])
     r_result = answer;
     return 0;
 }
+int rcomp(int argc, char* argv[])
+{
+    real n0, n1;
+
+    if (argc < 3)
+        return -1;
+    n0 = strtor(argv[1]);
+    n1 = strtor(argv[2]);
+    if (n0 == n1)
+        r_result = 0;
+    else if (n0 < n1)
+        r_result = -1;
+    else if (n0 > n1)
+        r_result = +1;
+    else /* unordered comparisons, such as between NaN and infinity */
+        r_result = NAN;
+    return 0;
+}
 
 const math_operation op_functions[] = {
     radd     , iadd     , wadd     ,
@@ -252,4 +270,5 @@ const math_operation op_functions[] = {
     rbradix  , ibradix  , wbradix  ,
 
     rfact    , inull    , wfact    ,
+    rcomp    , icomp    , wcomp    ,
 };
