@@ -2,13 +2,13 @@
 #include <signal.h>
 
 #include "calc.h"
-#include <math.h>
+#include "strtor.h"
 
-/* labs(), ldiv() */
+/* labs(), ldiv(), malloc(), qsort() */
 #include <stdlib.h>
 
+#include <math.h>
 #include <limits.h>
-#include "strtor.h"
 integer i_result;
 
 int iadd(int argc, char* argv[])
@@ -197,5 +197,30 @@ int icomp(int argc, char* argv[])
         i_result =  0;
     else
         i_result = +1;
+    return 0;
+}
+int imedian(int argc, char* argv[])
+{
+    integer* constants;
+    register size_t i, limit;
+
+    if (argc < 2)
+        return -1;
+    limit = (unsigned int)(argc) - 1; /* argc isn't negative, so this fits. */
+    constants = (integer*)malloc(sizeof(integer) * limit);
+    if (constants == NULL)
+        return 1;
+
+    for (i = 0; i < limit; i++)
+        constants[i] = strtoi(argv[i + 1]);
+    qsort(constants, limit, sizeof(integer), (qsort_cmp_func)iqsort_cmp);
+
+    if (limit % 2) { /* An odd number of constants has only one middle const. */
+        i = (limit - 1) >> 1;
+        i_result = constants[i];
+    } else { /* An even-numbered list of constants has two middles. */
+        i = (limit >> 1) - 1;
+        i_result = (constants[i + 0] + constants[i + 1]) / 2;
+    }
     return 0;
 }

@@ -28,6 +28,7 @@ extern int rfact    (int argc, char* argv[]);
 extern int rcomp    (int argc, char* argv[]);
 /* not really useful:  rgcd() */
 /* not really useful:  rlcm() */
+extern int rmedian  (int argc, char* argv[]);
 
 /*
  * high-precision integer operations
@@ -49,6 +50,7 @@ extern int ibradix  (int argc, char* argv[]);
 extern int icomp    (int argc, char* argv[]);
 /* not really useful:  igcd() */
 /* not really useful:  ilcm() */
+extern int imedian  (int argc, char* argv[]);
 
 /*
  * higher-precision whole number operations
@@ -70,6 +72,7 @@ extern int wfact    (int argc, char* argv[]);
 extern int wcomp    (int argc, char* argv[]);
 extern int wgcd     (int argc, char* argv[]);
 extern int wlcm     (int argc, char* argv[]);
+extern int wmedian  (int argc, char* argv[]);
 
 /*
  * Store the last answer calculated for use in on-screen display later
@@ -78,5 +81,16 @@ extern int wlcm     (int argc, char* argv[]);
 extern real             r_result;
 extern integer          i_result;
 extern whole_number     w_result;
+
+/*
+ * sort-by-comparision functions called by qsort() from stdlib.h
+ */
+typedef int(*qsort_cmp_func)(
+    const void* m,
+    const void* n
+);
+extern int rqsort_cmp(const real* m, const real* n);
+extern int iqsort_cmp(const integer* m, const integer* n);
+extern int wqsort_cmp(const whole_number* m, const whole_number* n);
 
 #endif

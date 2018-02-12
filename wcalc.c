@@ -1,9 +1,10 @@
 #include <float.h>
 #include <signal.h>
 
-#include "calc.h"
+#include <stdlib.h>
 #include <math.h>
 
+#include "calc.h"
 #include "strtor.h"
 whole_number w_result;
 
@@ -225,5 +226,30 @@ int wlcm(int argc, char* argv[])
             return 1; /* unsigned overflow trying to count toward the LCM */
     }
     w_result = answer;
+    return 0;
+}
+int wmedian(int argc, char* argv[])
+{
+    whole_number* constants;
+    register size_t i, limit;
+
+    if (argc < 2)
+        return -1;
+    limit = (unsigned int)(argc) - 1; /* argc isn't negative, so this fits. */
+    constants = (whole_number*)malloc(sizeof(whole_number) * limit);
+    if (constants == NULL)
+        return 1;
+
+    for (i = 0; i < limit; i++)
+        constants[i] = strtow(argv[i + 1]);
+    qsort(constants, limit, sizeof(whole_number), (qsort_cmp_func)wqsort_cmp);
+
+    if (limit % 2) { /* An odd number of constants has only one middle const. */
+        i = (limit - 1) >> 1;
+        w_result = constants[i];
+    } else { /* An even-numbered list of constants has two middles. */
+        i = (limit >> 1) - 1;
+        w_result = (constants[i + 0] + constants[i + 1]) / 2;
+    }
     return 0;
 }

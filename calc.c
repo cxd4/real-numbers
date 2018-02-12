@@ -1,9 +1,10 @@
 #include <float.h>
 #include <signal.h>
 
-#include "calc.h"
+#include <stdlib.h>
 #include <math.h>
 
+#include "calc.h"
 #include "strtor.h"
 real r_result;
 
@@ -252,6 +253,31 @@ int rcomp(int argc, char* argv[])
         r_result = NAN;
     return 0;
 }
+int rmedian(int argc, char* argv[])
+{
+    real* constants;
+    register size_t i, limit;
+
+    if (argc < 2)
+        return -1;
+    limit = (unsigned int)(argc) - 1; /* argc isn't negative, so this fits. */
+    constants = (real*)malloc(sizeof(real) * limit);
+    if (constants == NULL)
+        return 1;
+
+    for (i = 0; i < limit; i++)
+        constants[i] = strtor(argv[i + 1]);
+    qsort(constants, limit, sizeof(real), (qsort_cmp_func)rqsort_cmp);
+
+    if (limit % 2) { /* An odd number of constants has only one middle const. */
+        i = (limit - 1) >> 1;
+        r_result = constants[i];
+    } else { /* An even-numbered list of constants has two middles. */
+        i = (limit >> 1) - 1;
+        r_result = (constants[i + 0] + constants[i + 1]) / 2;
+    }
+    return 0;
+}
 
 const math_operation op_functions[] = {
     radd     , iadd     , wadd     ,
@@ -273,4 +299,31 @@ const math_operation op_functions[] = {
     rcomp    , icomp    , wcomp    ,
     rnull    , inull    , wgcd     ,
     rnull    , inull    , wlcm     ,
+
+    rmedian  , imedian  , wmedian  ,
 };
+
+int rqsort_cmp(const real* m, const real* n)
+{
+    if (*m < *n)
+        return (0 - 1); /* Resort the array with m occurring before n. */
+    if (*m > *n)
+        return (0 + 1); /* Resort the array with m occurring after n. */
+    return 0;
+}
+int iqsort_cmp(const integer* m, const integer* n)
+{
+    if (*m < *n)
+        return (0 - 1);
+    if (*m > *n)
+        return (0 + 1);
+    return 0;
+}
+int wqsort_cmp(const whole_number* m, const whole_number* n)
+{
+    if (*m < *n)
+        return (0 - 1);
+    if (*m > *n)
+        return (0 + 1);
+    return 0;
+}
