@@ -272,4 +272,5 @@ const math_operation op_functions[] = {
     rfact    , inull    , wfact    ,
     rcomp    , icomp    , wcomp    ,
     rnull    , inull    , wgcd     ,
+    rnull    , inull    , wlcm     ,
 };

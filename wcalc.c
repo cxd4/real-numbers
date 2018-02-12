@@ -204,3 +204,26 @@ int wgcd(int argc, char* argv[])
             w_result = i;
     return 0;
 }
+int wlcm(int argc, char* argv[])
+{
+    whole_number m, n;
+    whole_number answer;
+
+    if (argc < 3)
+        return -1;
+    m = strtow(argv[1]);
+    n = strtow(argv[2]);
+    if (argc > 3)
+        return 1; /* Find LCM of several numbers in one command:  unsupported */
+    if (m == 0 || n == 0)
+        return 1; /* The LCM of 0 and anything is infinite. */
+
+    answer = (m < n) ? n : m;
+    while (answer % m != 0 || answer % n != 0) {
+        ++(answer);
+        if (answer == 0)
+            return 1; /* unsigned overflow trying to count toward the LCM */
+    }
+    w_result = answer;
+    return 0;
+}
