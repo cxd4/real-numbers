@@ -181,3 +181,26 @@ int wcomp(int argc, char* argv[])
     w_result = (n0 < n1) ? 1 : 0;
     return 0;
 }
+int wgcd(int argc, char* argv[])
+{
+    whole_number m, n;
+    whole_number i, j; /* Loop from i = 1 to j = max(m, n). */
+
+    if (argc < 3)
+        return -1;
+    m = strtow(argv[1]);
+    n = strtow(argv[2]);
+    if (argc > 3)
+        return 1; /* Find GCF of several numbers in one command:  unsupported */
+    if (m == n) {
+        w_result = m;
+        return 0;
+    }
+
+    w_result = 1;
+    j = (m < n) ? n : m;
+    for (i = 1; i < j; i++)
+        if (m % i == 0 && n % i == 0)
+            w_result = i;
+    return 0;
+}
