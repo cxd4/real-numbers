@@ -89,7 +89,7 @@ extern integer          i_result;
 extern whole_number     w_result;
 
 /*
- * sort-by-comparision functions called by qsort() from stdlib.h
+ * Sort-by-comparison functions called by qsort() from stdlib.h.
  */
 typedef int(*qsort_cmp_func)(
     const void* m,
