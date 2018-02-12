@@ -228,6 +228,19 @@ int wlcm(int argc, char* argv[])
     w_result = answer;
     return 0;
 }
+int wmean(int argc, char* argv[])
+{
+    whole_number answer;
+    register int i;
+
+    answer = 0;
+    if (argc < 2)
+        return -1;
+    for (i = 1; i < argc; i++)
+        answer += strtow(argv[i]);
+    w_result = answer / (argc - 1);
+    return 0;
+}
 int wmedian(int argc, char* argv[])
 {
     whole_number* constants;

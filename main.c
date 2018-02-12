@@ -40,6 +40,7 @@ static const char ops[][8] = {
     "gcd", "igcd", "wgcd",
     "lcm", "ilcm", "wlcm",
 
+    "mean", "imean", "wmean",
     "med", "imed", "wmed",
 };
 

@@ -28,6 +28,7 @@ extern int rfact    (int argc, char* argv[]);
 extern int rcomp    (int argc, char* argv[]);
 /* not really useful:  rgcd() */
 /* not really useful:  rlcm() */
+extern int rmean    (int argc, char* argv[]);
 extern int rmedian  (int argc, char* argv[]);
 
 /*
@@ -50,6 +51,7 @@ extern int ibradix  (int argc, char* argv[]);
 extern int icomp    (int argc, char* argv[]);
 /* not really useful:  igcd() */
 /* not really useful:  ilcm() */
+extern int imean    (int argc, char* argv[]);
 extern int imedian  (int argc, char* argv[]);
 
 /*
@@ -72,6 +74,7 @@ extern int wfact    (int argc, char* argv[]);
 extern int wcomp    (int argc, char* argv[]);
 extern int wgcd     (int argc, char* argv[]);
 extern int wlcm     (int argc, char* argv[]);
+extern int wmean    (int argc, char* argv[]);
 extern int wmedian  (int argc, char* argv[]);
 
 /*

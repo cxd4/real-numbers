@@ -253,6 +253,19 @@ int rcomp(int argc, char* argv[])
         r_result = NAN;
     return 0;
 }
+int rmean(int argc, char* argv[])
+{
+    real answer;
+    register int i;
+
+    answer = 0;
+    if (argc < 2)
+        return -1;
+    for (i = 1; i < argc; i++)
+        answer += strtor(argv[i]);
+    r_result = answer / (argc - 1);
+    return 0;
+}
 int rmedian(int argc, char* argv[])
 {
     real* constants;
@@ -300,6 +313,7 @@ const math_operation op_functions[] = {
     rnull    , inull    , wgcd     ,
     rnull    , inull    , wlcm     ,
 
+    rmean    , imean    , wmean    ,
     rmedian  , imedian  , wmedian  ,
 };
 

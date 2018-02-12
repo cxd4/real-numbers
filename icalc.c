@@ -199,6 +199,19 @@ int icomp(int argc, char* argv[])
         i_result = +1;
     return 0;
 }
+int imean(int argc, char* argv[])
+{
+    integer answer;
+    register int i;
+
+    answer = 0;
+    if (argc < 2)
+        return -1;
+    for (i = 1; i < argc; i++)
+        answer += strtoi(argv[i]);
+    i_result = answer / (argc - 1);
+    return 0;
+}
 int imedian(int argc, char* argv[])
 {
     integer* constants;
