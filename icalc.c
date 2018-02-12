@@ -237,3 +237,21 @@ int imedian(int argc, char* argv[])
     }
     return 0;
 }
+int irange(int argc, char* argv[])
+{
+    integer greatest, least, source;
+    register int i;
+
+    if (argc < 2)
+        return -1;
+    greatest = least = 0;
+    for (i = 1; i < argc; i++) {
+        source = strtoi(argv[i]);
+        if (least > source || i == 1)
+            least = source;
+        if (greatest < source || i == 1)
+            greatest = source;
+    }
+    i_result = greatest - least;
+    return 0;
+}

@@ -30,6 +30,7 @@ extern int rcomp    (int argc, char* argv[]);
 /* not really useful:  rlcm() */
 extern int rmean    (int argc, char* argv[]);
 extern int rmedian  (int argc, char* argv[]);
+extern int rrange   (int argc, char* argv[]);
 
 /*
  * high-precision integer operations
@@ -53,6 +54,7 @@ extern int icomp    (int argc, char* argv[]);
 /* not really useful:  ilcm() */
 extern int imean    (int argc, char* argv[]);
 extern int imedian  (int argc, char* argv[]);
+extern int irange   (int argc, char* argv[]);
 
 /*
  * higher-precision whole number operations
@@ -76,6 +78,7 @@ extern int wgcd     (int argc, char* argv[]);
 extern int wlcm     (int argc, char* argv[]);
 extern int wmean    (int argc, char* argv[]);
 extern int wmedian  (int argc, char* argv[]);
+extern int wrange   (int argc, char* argv[]);
 
 /*
  * Store the last answer calculated for use in on-screen display later

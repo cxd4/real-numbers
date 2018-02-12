@@ -291,6 +291,24 @@ int rmedian(int argc, char* argv[])
     }
     return 0;
 }
+int rrange(int argc, char* argv[])
+{
+    real greatest, least, source;
+    register int i;
+
+    if (argc < 2)
+        return -1;
+    greatest = least = 0;
+    for (i = 1; i < argc; i++) {
+        source = strtor(argv[i]);
+        if (least > source || i == 1)
+            least = source;
+        if (greatest < source || i == 1)
+            greatest = source;
+    }
+    r_result = greatest - least;
+    return 0;
+}
 
 const math_operation op_functions[] = {
     radd     , iadd     , wadd     ,
@@ -315,6 +333,7 @@ const math_operation op_functions[] = {
 
     rmean    , imean    , wmean    ,
     rmedian  , imedian  , wmedian  ,
+    rrange   , irange   , wrange   ,
 };
 
 int rqsort_cmp(const real* m, const real* n)

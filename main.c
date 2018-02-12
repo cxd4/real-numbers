@@ -42,6 +42,7 @@ static const char ops[][8] = {
 
     "mean", "imean", "wmean",
     "med", "imed", "wmed",
+    "range", "irange", "wrange",
 };
 
 static int

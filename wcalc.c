@@ -266,3 +266,21 @@ int wmedian(int argc, char* argv[])
     }
     return 0;
 }
+int wrange(int argc, char* argv[])
+{
+    whole_number greatest, least, source;
+    register int i;
+
+    if (argc < 2)
+        return -1;
+    greatest = least = 0;
+    for (i = 1; i < argc; i++) {
+        source = strtow(argv[i]);
+        if (least > source || i == 1)
+            least = source;
+        if (greatest < source || i == 1)
+            greatest = source;
+    }
+    w_result = greatest - least;
+    return 0;
+}
