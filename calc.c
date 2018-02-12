@@ -289,6 +289,7 @@ int rmedian(int argc, char* argv[])
         i = (limit >> 1) - 1;
         r_result = (constants[i + 0] + constants[i + 1]) / 2;
     }
+    free(constants);
     return 0;
 }
 int rrange(int argc, char* argv[])

@@ -264,6 +264,7 @@ int wmedian(int argc, char* argv[])
         i = (limit >> 1) - 1;
         w_result = (constants[i + 0] + constants[i + 1]) / 2;
     }
+    free(constants);
     return 0;
 }
 int wrange(int argc, char* argv[])

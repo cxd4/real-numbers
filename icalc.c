@@ -4,7 +4,7 @@
 #include "calc.h"
 #include "strtor.h"
 
-/* labs(), ldiv(), malloc(), qsort() */
+/* labs(), ldiv(), malloc(), free(), qsort() */
 #include <stdlib.h>
 
 #include <math.h>
@@ -235,6 +235,7 @@ int imedian(int argc, char* argv[])
         i = (limit >> 1) - 1;
         i_result = (constants[i + 0] + constants[i + 1]) / 2;
     }
+    free(constants);
     return 0;
 }
 int irange(int argc, char* argv[])
