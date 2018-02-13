@@ -36,7 +36,9 @@ strtor(const char* str)
         fprintf(stderr, "Unchecked errno already set to %i.\n", errno);
         errno = 0;
     }
-    if (str[0] == 'e') {
+    if (str[0] == '\0') {
+        result = 0;
+    } else if (str[0] == 'e') {
         if (str[1] == '\0')
             result = exp(1);
         else
