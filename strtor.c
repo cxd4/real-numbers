@@ -53,6 +53,18 @@ strtor(const char* str)
     } else if (strncmp(str, "cbrt", 4) == 0) {
         result = strtor(str + 4);
         result = (result < 0) ? -pow(-result, 1.0 / 3) : pow(result, 1.0 / 3);
+    } else if (strncmp(str, "sin", 3) == 0) {
+        result = sin(strtor(str + 3) / 180 * pi());
+    } else if (strncmp(str, "cos", 3) == 0) {
+        result = cos(strtor(str + 3) / 180 * pi());
+    } else if (strncmp(str, "tan", 3) == 0) {
+        result = tan(strtor(str + 3) / 180 * pi());
+    } else if (strncmp(str, "csc", 3) == 0) {
+        result = 1 / sin(strtor(str + 3) / 180 * pi());
+    } else if (strncmp(str, "sec", 3) == 0) {
+        result = 1 / cos(strtor(str + 3) / 180 * pi());
+    } else if (strncmp(str, "cot", 3) == 0) {
+        result = 1 / tan(strtor(str + 3) / 180 * pi());
     } else {
         result = strtod(str, &new_offset);
         if (new_offset != str)
