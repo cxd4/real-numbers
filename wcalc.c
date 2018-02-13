@@ -313,6 +313,8 @@ int wmode(int argc, char* argv[])
             most_repeats = unique_numbers[j].repeats;
             w_result = unique_numbers[j].constant;
         }
+    if (unique_numbers[j].repeats == 0)
+        return 1; /* This data set has no mode.  All constants appear once. */
     free(unique_numbers);
     return 0;
 }
