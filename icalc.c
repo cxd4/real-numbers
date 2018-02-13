@@ -4,7 +4,7 @@
 #include "calc.h"
 #include "strtor.h"
 
-/* labs(), ldiv(), malloc(), free(), qsort() */
+/* labs(), ldiv(), malloc(), free(), calloc(), qsort() */
 #include <stdlib.h>
 
 #include <math.h>
@@ -261,15 +261,13 @@ int imode(int argc, char* argv[])
         if (constants[i] != constants[i - 1])
             ++(number_of_unique_entries);
     unique_numbers = (integer_list*)
-        malloc(sizeof(integer_list) * number_of_unique_entries)
-    ;
+        calloc(number_of_unique_entries, sizeof(integer_list));
     if (unique_numbers == NULL) {
         free(constants);
         return 1;
     }
 
     unique_numbers[0].constant = constants[0];
-    unique_numbers[0].repeats  = 0;
     for (j = 0, i = 1; i < limit; i++)
         if (constants[i] != constants[i - 1])
             unique_numbers[++j].constant = constants[i];

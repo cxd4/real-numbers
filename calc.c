@@ -315,15 +315,13 @@ int rmode(int argc, char* argv[])
         if (constants[i] != constants[i - 1])
             ++(number_of_unique_entries);
     unique_numbers = (real_list*)
-        malloc(sizeof(real_list) * number_of_unique_entries)
-    ;
+        calloc(number_of_unique_entries, sizeof(real_list));
     if (unique_numbers == NULL) {
         free(constants);
         return 1;
     }
 
     unique_numbers[0].constant = constants[0];
-    unique_numbers[0].repeats  = 0;
     for (j = 0, i = 1; i < limit; i++)
         if (constants[i] != constants[i - 1])
             unique_numbers[++j].constant = constants[i];
