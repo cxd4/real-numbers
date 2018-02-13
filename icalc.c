@@ -238,6 +238,55 @@ int imedian(int argc, char* argv[])
     free(constants);
     return 0;
 }
+int imode(int argc, char* argv[])
+{
+    integer_list* unique_numbers;
+    integer* constants;
+    whole_number most_repeats;
+    register size_t i, j, limit, number_of_unique_entries;
+
+    if (argc < 2)
+        return -1;
+    limit = (unsigned int)(argc) - 1;
+    constants = (integer*)malloc(sizeof(integer) * limit);
+    if (constants == NULL)
+        return 1;
+
+    for (i = 0; i < limit; i++)
+        constants[i] = strtoi(argv[i + 1]);
+    qsort(constants, limit, sizeof(integer), (qsort_cmp_func)iqsort_cmp);
+
+    number_of_unique_entries = 1;
+    for (i = 1; i < limit; i++)
+        if (constants[i] != constants[i - 1])
+            ++(number_of_unique_entries);
+    unique_numbers = (integer_list*)
+        malloc(sizeof(integer_list) * number_of_unique_entries)
+    ;
+    if (unique_numbers == NULL) {
+        free(constants);
+        return 1;
+    }
+
+    unique_numbers[0].constant = constants[0];
+    unique_numbers[0].repeats  = 0;
+    for (j = 0, i = 1; i < limit; i++)
+        if (constants[i] != constants[i - 1])
+            unique_numbers[++j].constant = constants[i];
+        else
+            ++(unique_numbers[j].repeats);
+    free(constants);
+
+    i_result     = unique_numbers[0].constant;
+    most_repeats = unique_numbers[0].repeats;
+    for (j = 1; j < number_of_unique_entries; j++)
+        if (most_repeats < unique_numbers[j].repeats) {
+            most_repeats = unique_numbers[j].repeats;
+            i_result = unique_numbers[j].constant;
+        }
+    free(unique_numbers);
+    return 0;
+}
 int irange(int argc, char* argv[])
 {
     integer greatest, least, source;

@@ -30,6 +30,7 @@ extern int rcomp    (int argc, char* argv[]);
 /* not really useful:  rlcm() */
 extern int rmean    (int argc, char* argv[]);
 extern int rmedian  (int argc, char* argv[]);
+extern int rmode    (int argc, char* argv[]);
 extern int rrange   (int argc, char* argv[]);
 
 /*
@@ -54,6 +55,7 @@ extern int icomp    (int argc, char* argv[]);
 /* not really useful:  ilcm() */
 extern int imean    (int argc, char* argv[]);
 extern int imedian  (int argc, char* argv[]);
+extern int imode    (int argc, char* argv[]);
 extern int irange   (int argc, char* argv[]);
 
 /*
@@ -78,6 +80,7 @@ extern int wgcd     (int argc, char* argv[]);
 extern int wlcm     (int argc, char* argv[]);
 extern int wmean    (int argc, char* argv[]);
 extern int wmedian  (int argc, char* argv[]);
+extern int wmode    (int argc, char* argv[]);
 extern int wrange   (int argc, char* argv[]);
 
 /*
@@ -98,5 +101,21 @@ typedef int(*qsort_cmp_func)(
 extern int rqsort_cmp(const real* m, const real* n);
 extern int iqsort_cmp(const integer* m, const integer* n);
 extern int wqsort_cmp(const whole_number* m, const whole_number* n);
+
+/*
+ * Structures listing unique occurrences of datum for deriving the mode.
+ */
+typedef struct {
+    real constant;
+    whole_number repeats;
+} real_list;
+typedef struct {
+    integer constant;
+    whole_number repeats;
+} integer_list;
+typedef struct {
+    whole_number constant;
+    whole_number repeats;
+} whole_number_list;
 
 #endif

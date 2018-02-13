@@ -25,6 +25,15 @@ static const char ops[][8] = {
     "mul", "imul", "wmul",
     "div", "idiv", "wdiv",
 
+/*
+ * Because a partial search on "mod" (the % operator in C) matches "mode",
+ * we want "mode" to be defined before "mod" in the strncmp() search order.
+ */
+    "mean", "imean", "wmean",
+    "med", "imed", "wmed",
+    "mode", "imode", "wmode",
+    "range", "irange", "wrange",
+
     "mod", "imod", "wmod",
     "abs", "iabs", "wabs",
     "ceil", "iceil", "wceil",
@@ -39,10 +48,6 @@ static const char ops[][8] = {
     "comp", "icomp", "wcomp",
     "gcd", "igcd", "wgcd",
     "lcm", "ilcm", "wlcm",
-
-    "mean", "imean", "wmean",
-    "med", "imed", "wmed",
-    "range", "irange", "wrange",
 };
 
 static int
