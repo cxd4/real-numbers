@@ -397,7 +397,7 @@ const math_operation op_functions[] = {
     rnull    , inull    , wgcd     ,
     rnull    , inull    , wlcm     ,
 
-    rasin    , iasin    , wnull    ,
+    rasin    , iasin    , wasin    ,
 };
 
 int rqsort_cmp(const real* m, const real* n)

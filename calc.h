@@ -84,7 +84,7 @@ extern int wmean    (int argc, char* argv[]);
 extern int wmedian  (int argc, char* argv[]);
 extern int wmode    (int argc, char* argv[]);
 extern int wrange   (int argc, char* argv[]);
-/* not really useful:  wasin() */
+extern int wasin    (int argc, char* argv[]);
 
 /*
  * Approximate the Archimedian constant "pi" to the maximum precision

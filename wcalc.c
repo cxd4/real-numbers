@@ -334,3 +334,14 @@ int wrange(int argc, char* argv[])
     w_result = greatest - least;
     return 0;
 }
+int wasin(int argc, char* argv[])
+{
+    integer old_result;
+    int error_status;
+
+    old_result = i_result;
+    error_status = iasin(argc, argv);
+    w_result = (whole_number)(i_result + 360) % 360; /* -90 deg. = 270 deg. */
+    i_result = old_result;
+    return (error_status);
+}
