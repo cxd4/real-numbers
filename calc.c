@@ -359,6 +359,17 @@ int rrange(int argc, char* argv[])
     r_result = greatest - least;
     return 0;
 }
+int rasin(int argc, char* argv[])
+{
+    real answer, source;
+
+    if (argc < 2)
+        return -1;
+    source = strtor(argv[1]);
+    answer = asin(source);
+    r_result = answer;
+    return 0;
+}
 
 const math_operation op_functions[] = {
     radd     , iadd     , wadd     ,
@@ -385,6 +396,8 @@ const math_operation op_functions[] = {
     rcomp    , icomp    , wcomp    ,
     rnull    , inull    , wgcd     ,
     rnull    , inull    , wlcm     ,
+
+    rasin    , iasin    , wnull    ,
 };
 
 int rqsort_cmp(const real* m, const real* n)

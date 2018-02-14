@@ -7,7 +7,7 @@
 #include <math.h>
 #include "strtor.h"
 
-static real pi(void)
+real pi(void)
 {
     static real pi_approximation;
     real base;

@@ -32,6 +32,7 @@ extern int rmean    (int argc, char* argv[]);
 extern int rmedian  (int argc, char* argv[]);
 extern int rmode    (int argc, char* argv[]);
 extern int rrange   (int argc, char* argv[]);
+extern int rasin    (int argc, char* argv[]);
 
 /*
  * high-precision integer operations
@@ -57,6 +58,7 @@ extern int imean    (int argc, char* argv[]);
 extern int imedian  (int argc, char* argv[]);
 extern int imode    (int argc, char* argv[]);
 extern int irange   (int argc, char* argv[]);
+extern int iasin    (int argc, char* argv[]);
 
 /*
  * higher-precision whole number operations
@@ -82,6 +84,14 @@ extern int wmean    (int argc, char* argv[]);
 extern int wmedian  (int argc, char* argv[]);
 extern int wmode    (int argc, char* argv[]);
 extern int wrange   (int argc, char* argv[]);
+/* not really useful:  wasin() */
+
+/*
+ * Approximate the Archimedian constant "pi" to the maximum precision
+ * attainable for our real number type.
+ */
+extern real
+pi(void);
 
 /*
  * Store the last answer calculated for use in on-screen display later

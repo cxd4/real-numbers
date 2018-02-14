@@ -305,3 +305,20 @@ int irange(int argc, char* argv[])
     i_result = greatest - least;
     return 0;
 }
+int iasin(int argc, char* argv[])
+{
+    real answer, source, fractional_part;
+    double whole_part;
+
+    if (argc < 2)
+        return -1;
+    source = strtor(argv[1]);
+    answer = asin(source) * 180 / pi();
+    fractional_part = modf(answer, &whole_part);
+    if (fractional_part < 0)
+        answer = (fractional_part > -.5) ? ceil(answer) : floor(answer);
+    else
+        answer = (fractional_part < +.5) ? floor(answer) : ceil(answer);
+    i_result = (integer)answer;
+    return 0;
+}

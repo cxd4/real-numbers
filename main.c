@@ -48,6 +48,8 @@ static const char ops[][8] = {
     "comp", "icomp", "wcomp",
     "gcd", "igcd", "wgcd",
     "lcm", "ilcm", "wlcm",
+
+    "arcsin", "iarcsin", "warcsin",
 };
 
 static int
