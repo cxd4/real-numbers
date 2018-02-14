@@ -307,18 +307,20 @@ int irange(int argc, char* argv[])
 }
 int iasin(int argc, char* argv[])
 {
-    real answer, source, fractional_part;
-    double whole_part;
+    real answer, fractional_part, old_result;
+    double whole_part; /* unused but needs to exist for modf() safety */
+    int error_status;
 
-    if (argc < 2)
-        return -1;
-    source = strtor(argv[1]);
-    answer = asin(source) * 180 / pi();
+    old_result = r_result;
+    error_status = rasin(argc, argv);
+    answer = r_result * 180 / pi();
+    r_result = old_result;
+
     fractional_part = modf(answer, &whole_part);
     if (fractional_part < 0)
         answer = (fractional_part > -.5) ? ceil(answer) : floor(answer);
     else
         answer = (fractional_part < +.5) ? floor(answer) : ceil(answer);
     i_result = (integer)answer;
-    return 0;
+    return (error_status);
 }

@@ -366,6 +366,8 @@ int rasin(int argc, char* argv[])
     if (argc < 2)
         return -1;
     source = strtor(argv[1]);
+    if (source < -1 || source > +1) /* domain error:  errno = EDOM */
+        return 1; /* Executing asin() on such a value has undefined output. */
     answer = asin(source);
     r_result = answer;
     return 0;
