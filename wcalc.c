@@ -356,3 +356,14 @@ int wacos(int argc, char* argv[])
     i_result = old_result;
     return (error_status);
 }
+int watan(int argc, char* argv[])
+{
+    integer old_result;
+    int error_status;
+
+    old_result = i_result;
+    error_status = iatan(argc, argv);
+    w_result = (whole_number)(i_result + 180) % 180;
+    i_result = old_result;
+    return (error_status);
+}

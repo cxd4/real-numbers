@@ -385,6 +385,25 @@ int racos(int argc, char* argv[])
     r_result = answer;
     return 0;
 }
+int ratan(int argc, char* argv[])
+{
+    real answer, slope, rise, run;
+
+    if (argc < 2)
+        return -1;
+    rise = strtor(argv[1]);
+    if (argc < 3) {
+        run = 1;
+        answer = atan(slope = rise / run);
+    } else {
+        run = strtor(argv[2]);
+        if (rise == 0 && run == 0)
+            return 1; /* A line with no rise or run is just a single point. */
+        answer = atan2(rise, run);
+    }
+    r_result = answer;
+    return 0;
+}
 
 const math_operation op_functions[] = {
     radd     , iadd     , wadd     ,
@@ -414,6 +433,7 @@ const math_operation op_functions[] = {
 
     rasin    , iasin    , wasin    ,
     racos    , iacos    , wacos    ,
+    ratan    , iatan    , watan    ,
 };
 
 int rqsort_cmp(const real* m, const real* n)
