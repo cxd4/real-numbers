@@ -11,6 +11,23 @@
 #include <limits.h>
 integer i_result;
 
+static integer ftoi_round(real constant)
+{
+    real answer, fractional_part;
+    double whole_part; /* unused but needs to exist for modf() safety */
+
+    fractional_part = modf(constant, &whole_part);
+#if 0
+    assert(constant == whole_part + fractional_part);
+    assert(fractional_part >= -1 && fractional_part <= +1);
+#endif
+    if (fractional_part < 0)
+        answer = (fractional_part > -.5) ? ceil(constant) : floor(constant);
+    else
+        answer = (fractional_part < +.5) ? floor(constant) : ceil(constant);
+    return (integer)(answer);
+}
+
 int iadd(int argc, char* argv[])
 {
     integer answer, source;
@@ -307,8 +324,7 @@ int irange(int argc, char* argv[])
 }
 int iasin(int argc, char* argv[])
 {
-    real answer, fractional_part, old_result;
-    double whole_part; /* unused but needs to exist for modf() safety */
+    real answer, old_result;
     int error_status;
 
     old_result = r_result;
@@ -316,18 +332,12 @@ int iasin(int argc, char* argv[])
     answer = r_result * 180 / pi();
     r_result = old_result;
 
-    fractional_part = modf(answer, &whole_part);
-    if (fractional_part < 0)
-        answer = (fractional_part > -.5) ? ceil(answer) : floor(answer);
-    else
-        answer = (fractional_part < +.5) ? floor(answer) : ceil(answer);
-    i_result = (integer)answer;
+    i_result = ftoi_round(answer);
     return (error_status);
 }
 int iacos(int argc, char* argv[])
 {
-    real answer, fractional_part, old_result;
-    double whole_part;
+    real answer, old_result;
     int error_status;
 
     old_result = r_result;
@@ -335,18 +345,12 @@ int iacos(int argc, char* argv[])
     answer = r_result * 180 / pi();
     r_result = old_result;
 
-    fractional_part = modf(answer, &whole_part);
-    if (fractional_part < 0)
-        answer = (fractional_part > -.5) ? ceil(answer) : floor(answer);
-    else
-        answer = (fractional_part < +.5) ? floor(answer) : ceil(answer);
-    i_result = (integer)answer;
+    i_result = ftoi_round(answer);
     return (error_status);
 }
 int iatan(int argc, char* argv[])
 {
-    real answer, fractional_part, old_result;
-    double whole_part;
+    real answer, old_result;
     int error_status;
 
     old_result = r_result;
@@ -354,11 +358,6 @@ int iatan(int argc, char* argv[])
     answer = r_result * 180 / pi();
     r_result = old_result;
 
-    fractional_part = modf(answer, &whole_part);
-    if (fractional_part < 0)
-        answer = (fractional_part > -.5) ? ceil(answer) : floor(answer);
-    else
-        answer = (fractional_part < +.5) ? floor(answer) : ceil(answer);
-    i_result = (integer)answer;
+    i_result = ftoi_round(answer);
     return (error_status);
 }
