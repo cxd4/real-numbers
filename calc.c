@@ -372,6 +372,19 @@ int rasin(int argc, char* argv[])
     r_result = answer;
     return 0;
 }
+int racos(int argc, char* argv[])
+{
+    real answer, source;
+
+    if (argc < 2)
+        return -1;
+    source = strtor(argv[1]);
+    if (source < -1 || source > +1) 
+        return 1;
+    answer = acos(source);
+    r_result = answer;
+    return 0;
+}
 
 const math_operation op_functions[] = {
     radd     , iadd     , wadd     ,
@@ -400,6 +413,7 @@ const math_operation op_functions[] = {
     rnull    , inull    , wlcm     ,
 
     rasin    , iasin    , wasin    ,
+    racos    , iacos    , wacos    ,
 };
 
 int rqsort_cmp(const real* m, const real* n)

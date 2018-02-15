@@ -324,3 +324,22 @@ int iasin(int argc, char* argv[])
     i_result = (integer)answer;
     return (error_status);
 }
+int iacos(int argc, char* argv[])
+{
+    real answer, fractional_part, old_result;
+    double whole_part;
+    int error_status;
+
+    old_result = r_result;
+    error_status = racos(argc, argv);
+    answer = r_result * 180 / pi();
+    r_result = old_result;
+
+    fractional_part = modf(answer, &whole_part);
+    if (fractional_part < 0)
+        answer = (fractional_part > -.5) ? ceil(answer) : floor(answer);
+    else
+        answer = (fractional_part < +.5) ? floor(answer) : ceil(answer);
+    i_result = (integer)answer;
+    return (error_status);
+}

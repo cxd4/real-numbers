@@ -33,6 +33,7 @@ extern int rmedian  (int argc, char* argv[]);
 extern int rmode    (int argc, char* argv[]);
 extern int rrange   (int argc, char* argv[]);
 extern int rasin    (int argc, char* argv[]);
+extern int racos    (int argc, char* argv[]);
 
 /*
  * high-precision integer operations
@@ -59,6 +60,7 @@ extern int imedian  (int argc, char* argv[]);
 extern int imode    (int argc, char* argv[]);
 extern int irange   (int argc, char* argv[]);
 extern int iasin    (int argc, char* argv[]);
+extern int iacos    (int argc, char* argv[]);
 
 /*
  * higher-precision whole number operations
@@ -85,6 +87,7 @@ extern int wmedian  (int argc, char* argv[]);
 extern int wmode    (int argc, char* argv[]);
 extern int wrange   (int argc, char* argv[]);
 extern int wasin    (int argc, char* argv[]);
+extern int wacos    (int argc, char* argv[]);
 
 /*
  * Approximate the Archimedian constant "pi" to the maximum precision

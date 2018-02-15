@@ -345,3 +345,14 @@ int wasin(int argc, char* argv[])
     i_result = old_result;
     return (error_status);
 }
+int wacos(int argc, char* argv[])
+{
+    integer old_result;
+    int error_status;
+
+    old_result = i_result;
+    error_status = iacos(argc, argv);
+    w_result = (whole_number)(i_result + 360) % 360;
+    i_result = old_result;
+    return (error_status);
+}
