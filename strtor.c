@@ -77,6 +77,9 @@ strtor(const char* str)
                 if (*new_offset != '\0')
                     result /= strtor(new_offset);
                 break;
+            case '^':
+                result = pow(result, strtor(new_offset + 1));
+                break;
             default:
                 result *= strtor(new_offset);
             }
