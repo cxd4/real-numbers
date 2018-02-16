@@ -67,9 +67,20 @@ strtor(const char* str)
         result = 1 / tan(strtor(str + 3) / 180 * pi());
     } else {
         result = strtod(str, &new_offset);
-        if (new_offset != str)
-            if (*new_offset != '\0')
+        if (new_offset != str) {
+            switch (*new_offset) {
+            case '\0':
+                break;
+            case '/': /* fraction (1/2e might mean 1/2 of e or 1/(2e). */
+            case ':': /* ratio (1:2e might mean 1:(2e) or 1/2 of e. */
+                ++(new_offset);
+                if (*new_offset != '\0')
+                    result /= strtor(new_offset);
+                break;
+            default:
                 result *= strtor(new_offset);
+            }
+        }
     }
     if (errno) {
         fprintf(
