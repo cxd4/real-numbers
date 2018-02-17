@@ -182,16 +182,14 @@ fp_str_round_trip(void)
     fp_digits = DBL_DIG + 1;
 #endif
 #else
-    test_ratio = (real)(correct_lsd) / (10 - 1);
-    fp_digits = -1;
-    do {
-        ++(fp_digits);
+    test_ratio = (real)(correct_lsd) / (10 - 1); /* 0.111..., 0.222..., etc. */
+    test_ratio *= 10;
+    lsd_of_whole_part = correct_lsd; /* 1.11..., 2.22..., etc. */
+    for (fp_digits = 1; lsd_of_whole_part == correct_lsd; fp_digits++) {
         test_ratio *= 10;
-        if (test_ratio >= 10 * correct_lsd)
-            test_ratio -= 10 * correct_lsd; /* Prevent overflow when casting. */
+        test_ratio -= 10 * correct_lsd; /* Prevent overflow when casting. */
         lsd_of_whole_part = (int)((unsigned int)test_ratio % 10);
-    } while (lsd_of_whole_part == correct_lsd);
-    ++(fp_digits);
+    }
 #endif
     --(fp_digits);
     if (fp_digits < FLT_DIG) /* This should never happen. */
