@@ -7,23 +7,34 @@
 #include <math.h>
 #include "strtor.h"
 
+static long double
+my_sqrt(long double x)
+{
+    long double newp, oldp;
+
+    for (oldp = x, newp = x/2; newp != oldp; newp = (oldp + x/oldp)/2) {
+        oldp = newp;
+    }
+    return (newp);
+}
+
 real pi(void)
 {
-    static real pi_approximation;
-    real base;
-    register real old_approximation;
+    static real pi_final;
+    long double pi_approximation, old_approximation, base;
 
-    if (pi_approximation != 0)
-        return (pi_approximation);
+    if (pi_final != 0)
+        return (pi_final);
     base = 0;
-    pi_approximation = 1;
+    pi_approximation = 2;
     do {
         old_approximation = pi_approximation;
-        base = sqrt(base + 2);
-        pi_approximation *= base / 2;
+        base = my_sqrt(base + 2);
+        pi_approximation *= 2;
+        pi_approximation /= base;
     } while (pi_approximation != old_approximation); /* no more precision */
-    pi_approximation = 2 / pi_approximation;
-    return (pi_approximation);
+    pi_final = (real)(pi_approximation);
+    return (pi_final);
 }
 
 real
