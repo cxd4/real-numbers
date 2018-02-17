@@ -4,11 +4,6 @@
 #include <signal.h>
 #include <setjmp.h>
 
-#include <float.h>
-#ifndef DBL_DECIMAL_DIG
-#define DBL_DECIMAL_DIG         ((DBL_DIG) + 3)
-#endif
-
 static jmp_buf CPU_state;
 static void FPU_exception_handler(int signal_code)
 {
@@ -83,7 +78,9 @@ f_execute(int argc, char* argv[])
             fprintf(stdout, "%lu\n", w_result);
             break;
         default:
-            fprintf(stdout, "%.*g\n", DBL_DECIMAL_DIG - 1, r_result);
+            fprintf(stdout,
+                "%.*Lg\n", fp_str_round_trip(), (long double)r_result
+            );
         }
         return (error_code);
     }

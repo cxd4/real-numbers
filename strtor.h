@@ -38,6 +38,19 @@ strtow(const char* str);
 
 
 /*
+ * number of digits of precision for type (real) preserving round-trip
+ * accuracy when converting between exact values and printed strings
+ *
+ * The easiest standard solution to this is DBL_DECIMAL_DIG in C 2011.
+ * Failing that, DECIMAL_DIG in C99 equates to LDBL_DECIMAL_DIG.
+ * Failing that, some people only care about the safe DBL_DIG from ANSI C89.
+ * Failing that (and not caring about any of that), we'll try calculating it.
+ */
+extern int
+fp_str_round_trip(void);
+
+
+/*
  * Note that several libraries exist to handle numbers with much more
  * precision than what (long double) allows (or (uintmax_t) and (intmax_t)
  * from C99).  This is certainly accomplished by using memory instead of CPU

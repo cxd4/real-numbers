@@ -4,7 +4,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <float.h>
 #include <math.h>
+
 #include "strtor.h"
 
 static long double
@@ -150,4 +152,49 @@ int
 puterr(const char* message)
 {
     return fprintf(stderr, "%s\n", message);
+}
+
+int
+fp_str_round_trip(void)
+{
+    static int fp_digits;
+#if ((FLT_RADIX) % 2 == 0)
+    real test_ratio; /* (real) can be either (float) or ([long] double). */
+    int lsd_of_whole_part; /* (int)66.666666667 % 10 == 6 */
+    const int correct_lsd = 3; /* We don't want a .66... case since 7 counts. */
+#endif
+
+    if (fp_digits)
+        return (fp_digits);
+#if ((FLT_RADIX) % 1 != 0)
+#ifdef DBL_DECIMAL_DIG
+    fp_digits = DBL_DECIMAL_DIG; /* defined in 2011 C specifications */
+#elif defined(DECIMAL_DIG)
+    fp_digits =
+        (sizeof(real) == sizeof(long double))
+      ? DECIMAL_DIG /* defined in C99 and equivalant to C11 LDBL_DECIMAL_DIG */
+      : DBL_DIG + 3
+    ;
+#else
+    fprintf(stderr,
+        "Untested:  Derive round precision when FLT_RADIX = %i?\n", FLT_RADIX
+    ); /* If FLT_RADIX is 9, the (1/9) rounding algorithm below is useless. */
+    fp_digits = DBL_DIG + 1;
+#endif
+#else
+    test_ratio = (real)(correct_lsd) / (10 - 1);
+    fp_digits = -1;
+    do {
+        ++(fp_digits);
+        test_ratio *= 10;
+        if (test_ratio >= 10 * correct_lsd)
+            test_ratio -= 10 * correct_lsd; /* Prevent overflow when casting. */
+        lsd_of_whole_part = (int)((unsigned int)test_ratio % 10);
+    } while (lsd_of_whole_part == correct_lsd);
+    ++(fp_digits);
+#endif
+    --(fp_digits);
+    if (fp_digits < FLT_DIG) /* This should never happen. */
+        fp_digits = FLT_DIG;
+    return (fp_digits);
 }
