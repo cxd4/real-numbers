@@ -15,51 +15,65 @@ static void FPU_exception_handler(int signal_code)
 #include "strtor.h"
 
 static const char ops[][8] = {
-    "add", "iadd", "wadd",
-    "sub", "isub", "wsub",
-    "mul", "imul", "wmul",
-    "div", "idiv", "wdiv",
+    "add",
+    "sub",
+    "mul",
+    "div",
 
 /*
  * Because a partial search on "mod" (the % operator in C) matches "mode",
  * we want "mode" to be defined before "mod" in the strncmp() search order.
  */
-    "mean", "imean", "wmean",
-    "med", "imed", "wmed",
-    "mode", "imode", "wmode",
-    "range", "irange", "wrange",
+    "mean",
+    "med",
+    "mode",
+    "range",
 
-    "mod", "imod", "wmod",
-    "abs", "iabs", "wabs",
-    "ceil", "iceil", "wceil",
-    "floor", "ifloor", "wfloor",
+    "mod",
+    "abs",
+    "ceil",
+    "floor",
 
-    "pow", "ipow", "wpow",
-    "bexp", "ibexp", "wbexp",
-    "root", "iroot", "wroot",
-    "bradix", "ibradix", "wbradix",
+    "pow",
+    "bexp",
+    "root",
+    "bradix",
 
-    "fact", "ifact", "wfact",
-    "comp", "icomp", "wcomp",
-    "gcd", "igcd", "wgcd",
-    "lcm", "ilcm", "wlcm",
+    "fact",
+    "comp",
+    "gcd",
+    "lcm",
 
-    "arcsin", "iarcsin", "warcsin",
-    "arccos", "iarccos", "warccos",
-    "arctan", "iarctan", "warctan",
+    "arcsin",
+    "arccos",
+    "arctan",
 };
 
 static int
 f_execute(int argc, char* argv[])
 {
-    register size_t i;
+    register size_t i, j;
     const size_t limit = sizeof(ops) / sizeof(ops[0]);
 
     for (i = 0; i < limit; i++) {
+        const char* name_start;
         int recovered_from_exception;
         int error_code;
 
-        if (strncmp(argv[0], ops[i], strlen(ops[i])) != 0)
+        name_start = argv[0];
+        switch (*name_start) {
+        case 'i':
+            j = 1;
+            ++name_start;
+            break;
+        case 'w':
+            j = 2;
+            ++name_start;
+            break;
+        default:
+            j = 0;
+        }
+        if (strncmp(name_start, ops[i], strlen(ops[i])) != 0)
             continue;
         signal(SIGFPE, FPU_exception_handler);
         recovered_from_exception = setjmp(CPU_state);
@@ -67,10 +81,10 @@ f_execute(int argc, char* argv[])
             signal(SIGFPE, FPU_exception_handler);
             continue; /* Try searching for another function to execute. */
         }
-        error_code = op_functions[i](argc, &argv[0]);
+        error_code = op_functions[3*i + j](argc, &argv[0]);
         if (error_code != 0)
             return (error_code);
-        switch (ops[i][0]) {
+        switch (argv[0][0]) {
         case 'i':
             fprintf(stdout, "%li\n", i_result);
             break;
