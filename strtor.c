@@ -84,8 +84,8 @@ strtor(const char* str)
             switch (*new_offset) {
             case '\0':
                 break;
-            case '/': /* fraction (1/2e might mean 1/2 of e or 1/(2e). */
-            case ':': /* ratio (1:2e might mean 1:(2e) or 1/2 of e. */
+            case '/': /* fraction:  1/2e might mean 1/2 of e or 1/(2e). */
+            case ':': /* ratio:  1:2e might mean 1:(2e) or 1/2 of e. */
                 ++(new_offset);
                 if (*new_offset != '\0')
                     result /= strtor(new_offset);
