@@ -39,7 +39,13 @@ extern int ratan    (int argc, char* argv[]);
 /*
  * high-precision integer operations
  */
+#ifdef _WIN64
+typedef long long       integer; /* Microsoft's ABI is LLP64. */
+#undef  strtol
+#define strtol strtoll
+#else
 typedef long            integer;
+#endif
 extern int iadd     (int argc, char* argv[]);
 extern int isubtract(int argc, char* argv[]);
 extern int imultiply(int argc, char* argv[]);
@@ -67,7 +73,13 @@ extern int iatan    (int argc, char* argv[]);
 /*
  * higher-precision whole number operations
  */
+#ifdef _WIN64
+typedef unsigned long long      whole_number;
+#undef  strtoul
+#define strtoul strtoull
+#else
 typedef unsigned long   whole_number;
+#endif
 extern int wadd     (int argc, char* argv[]);
 extern int wsubtract(int argc, char* argv[]);
 extern int wmultiply(int argc, char* argv[]);

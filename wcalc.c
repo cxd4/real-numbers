@@ -64,12 +64,8 @@ int wdivide(int argc, char* argv[])
     answer = strtow(argv[1]);
     for (i = 2; i < argc; i++) {
         source = strtow(argv[i]);
-#ifndef SIGFPE
-        if (source == 0) {
-            answer = ULONG_MAX;
-            continue;
-        }
-#endif
+        if (source == 0)
+            return 1;
         answer /= source;
     }
     w_result = answer;
@@ -85,10 +81,8 @@ int wmodulo(int argc, char* argv[])
     answer = strtow(argv[1]);
     for (i = 2; i < argc; i++) {
         source = strtow(argv[i]);
-#ifndef SIGFPE
         if (source == 0)
             return 1;
-#endif
         answer %= source;
     }
     w_result = answer;

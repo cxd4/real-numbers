@@ -190,10 +190,22 @@ f_execute(int argc, char* argv[])
             return (error_code);
         switch (argv[0][0]) {
         case 'i':
-            fprintf(stdout, "%li\n", i_result);
+            fprintf(stdout,
+#ifdef _WIN64
+                "%lli\n", i_result
+#else
+                "%li\n", i_result
+#endif
+            );
             break;
         case 'w':
-            fprintf(stdout, "%lu\n", w_result);
+            fprintf(stdout,
+#ifdef _WIN64
+                "%llu\n", w_result
+#else
+                "%lu\n", w_result
+#endif
+            );
             break;
         default:
             fprintf(stdout,

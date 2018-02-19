@@ -42,10 +42,10 @@ real pi(void)
 real
 strtor(const char* str)
 {
-    register double result;
+    register real result;
     char* new_offset;
 
-    if (errno) {
+    if (errno == ERANGE) {
         fprintf(stderr, "Unchecked errno already set to %i.\n", errno);
         errno = 0;
     }
@@ -98,10 +98,10 @@ strtor(const char* str)
             }
         }
     }
-    if (errno) {
+    if (errno == ERANGE) {
         fprintf(
-            stderr, "Problem %i converting %s to %f.\n",
-            errno, str, result
+            stderr, "Problem %i converting %s to %Lf.\n",
+            errno, str, (long double)result
         );
         errno = 0;
     }
@@ -111,18 +111,15 @@ strtor(const char* str)
 integer
 strtoi(const char* str)
 {
-    register long result;
+    register integer result;
 
-    if (errno) {
+    if (errno == ERANGE) {
         fprintf(stderr, "Unchecked errno already set to %i.\n", errno);
         errno = 0;
     }
     result = strtol(str, NULL, 0);
-    if (errno) {
-        fprintf(
-            stderr, "Problem %i converting %s to %li.\n",
-            errno, str, result
-        );
+    if (errno == ERANGE) {
+        fprintf(stderr, "Problem %i converting %s.\n", errno, str);
         errno = 0;
     }
     return (result);
@@ -131,18 +128,15 @@ strtoi(const char* str)
 whole_number
 strtow(const char* str)
 {
-    register unsigned long result;
+    register whole_number result;
 
-    if (errno) {
+    if (errno == ERANGE) {
         fprintf(stderr, "Unchecked errno already set to %i.\n", errno);
         errno = 0;
     }
     result = strtoul(str, NULL, 0);
-    if (errno) {
-        fprintf(
-            stderr, "Problem %i converting %s to %lu.\n",
-            errno, str, result
-        );
+    if (errno == ERANGE) {
+        fprintf(stderr, "Problem %i converting %s.\n", errno, str);
         errno = 0;
     }
     return (result);
