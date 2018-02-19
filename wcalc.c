@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include <limits.h>
 #include "calc.h"
 #include "strtor.h"
 whole_number w_result;
@@ -366,4 +367,22 @@ int watan(int argc, char* argv[])
     w_result = (whole_number)(i_result + 180) % 180;
     i_result = old_result;
     return (error_status);
+}
+
+int wexit(int argc, char* argv[])
+{
+    int signal_code;
+
+    w_result = 0;
+    if (argc >= 2)
+        w_result = strtow(argv[1]);
+
+    if (w_result > INT_MAX)
+        w_result = SIGFPE; /* integer overflow exception */
+    signal_code = (int)(w_result);
+    if (signal_code != 0) {
+        signal(signal_code, SIG_DFL);
+        raise(signal_code);
+    }
+    return 0xDEAD;
 }

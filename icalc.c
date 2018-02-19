@@ -4,7 +4,7 @@
 #include "calc.h"
 #include "strtor.h"
 
-/* labs(), ldiv(), malloc(), free(), calloc(), qsort() */
+/* labs(), ldiv(), malloc(), free(), calloc(), qsort(), exit() */
 #include <stdlib.h>
 
 #include <math.h>
@@ -360,4 +360,21 @@ int iatan(int argc, char* argv[])
 
     i_result = ftoi_round(answer);
     return (error_status);
+}
+
+int iexit(int argc, char* argv[])
+{
+    int status_code;
+
+    i_result = EXIT_SUCCESS;
+    if (argc >= 2)
+        i_result = strtoi(argv[1]);
+#if (LONG_MIN < INT_MIN || LONG_MAX > INT_MAX)
+    if (i_result < INT_MIN || i_result > INT_MAX)
+        exit(EXIT_FAILURE);
+#endif
+    status_code = (int)(i_result);
+    if (status_code)
+        exit(status_code);
+    return 0xDEAD;
 }

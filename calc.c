@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include <signal.h>
 #include "calc.h"
 #include "strtor.h"
 real r_result;
@@ -405,6 +406,16 @@ int ratan(int argc, char* argv[])
     return 0;
 }
 
+int rexit(int argc, char* argv[])
+{
+    if (argc >= 2) {
+        r_result = strtor(argv[1]);
+        if (r_result != 0)
+            raise(SIGINT);
+    }
+    return 0xDEAD;
+}
+
 const math_operation op_functions[] = {
     radd     , iadd     , wadd     ,
     rsubtract, isubtract, wsubtract,
@@ -434,6 +445,8 @@ const math_operation op_functions[] = {
     rasin    , iasin    , wasin    ,
     racos    , iacos    , wacos    ,
     ratan    , iatan    , watan    ,
+
+    rexit    , iexit    , wexit    ,
 };
 
 int rqsort_cmp(const real* m, const real* n)

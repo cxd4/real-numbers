@@ -93,6 +93,17 @@ extern int wacos    (int argc, char* argv[]);
 extern int watan    (int argc, char* argv[]);
 
 /*
+ * escape operations
+ *
+ * We should be able to hit Ctrl+C to break any loops in the program, but it
+ * can't hurt to have these, either.  Especially for the MS-DOS build when
+ * run in DOS machine emulators that don't emulate that keyboard interrupt.
+ */
+extern int rexit    (int argc, char* argv[]);
+extern int iexit    (int argc, char* argv[]);
+extern int wexit    (int argc, char* argv[]);
+
+/*
  * Approximate the Archimedian constant "pi" to the maximum precision
  * attainable for our real number type.
  */
