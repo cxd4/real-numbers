@@ -376,5 +376,5 @@ int iexit(int argc, char* argv[])
     status_code = (int)(i_result);
     if (status_code)
         exit(status_code);
-    return 0xDEAD;
+    return 0x7FFF;
 }

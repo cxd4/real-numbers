@@ -413,7 +413,7 @@ int rexit(int argc, char* argv[])
         if (r_result != 0)
             raise(SIGINT);
     }
-    return 0xDEAD;
+    return 0x7FFF;
 }
 
 const math_operation op_functions[] = {

@@ -65,7 +65,7 @@ main(void)
     status_code = f_execute(argc - 1, &argv[1]);
 
     switch (status_code) {
-    case 0xDEAD: /* sent from "exit" commands */
+    case 0x7FFF: /* sent from "exit" commands */
     case 0:
         return 0;
 

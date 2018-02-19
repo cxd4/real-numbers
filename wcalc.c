@@ -384,5 +384,5 @@ int wexit(int argc, char* argv[])
         signal(signal_code, SIG_DFL);
         raise(signal_code);
     }
-    return 0xDEAD;
+    return 0x7FFF;
 }

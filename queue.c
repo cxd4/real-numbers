@@ -98,7 +98,7 @@ op_queue(void)
         switch (status_code) {
         case 0:
             continue;
-        case 0xDEAD: /* User executed "exit" operation with no operands. */
+        case 0x7FFF: /* User executed "exit" operation with no operands. */
             return 0;
 
         case -1:
