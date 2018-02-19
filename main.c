@@ -43,15 +43,13 @@ main(void)
     case 0:
         break;
     case SIGFPE: /* probably divided by 0 on purpose or did, e.g., sqrt(-1) */
-#ifdef SUPPORT_COMMAND_LINE_FROM_OS
         signal(SIGFPE, FPU_exception_handler); /* Reschedule the EH callback. */
-        if (argc < 2)
-            break; /* Dive back in to bug the user for more crash attempts. */
-        fprintf(stdout, "%Le\n", LDBL_MAX/LDBL_MIN);
-        return 0;
-#else
-        break;
+#ifdef SUPPORT_COMMAND_LINE_FROM_OS
+        if (argc >= 2)
+            return 0;
 #endif
+        fprintf(stdout, "%Le\n", LDBL_MAX/LDBL_MIN);
+        break; /* Dive back in to bug the user for more crash attempts. */
     case SIGINT:
         return 0;
     default:
