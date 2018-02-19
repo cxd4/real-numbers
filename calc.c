@@ -251,7 +251,7 @@ int rcomp(int argc, char* argv[])
     else if (n0 > n1)
         r_result = +1;
     else /* unordered comparisons, such as between NaN and infinity */
-        r_result = NAN;
+        r_result = sqrt(-1); /* Try to return a thing like NAN if it exists. */
     return 0;
 }
 int rmean(int argc, char* argv[])
