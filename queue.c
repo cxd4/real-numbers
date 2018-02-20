@@ -179,10 +179,6 @@ f_execute(int argc, char* argv[])
             j = 2;
             ++name_start;
             break;
-        case 'f': /* optional prefix letter for floating-point operation */
-        case 'r': /* optional prefix letter for generic real number mode */
-            ++name_start;
-         /* Fall through. */
         default:
             j = 0;
         }
