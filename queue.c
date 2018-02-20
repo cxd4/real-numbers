@@ -107,6 +107,9 @@ op_queue(void)
         case +1:
             puterr("Requested operation cannot be executed.");
             break;
+        case -2:
+            puterr("Unknown operation.");
+            break;
         case +2:
             puterr("Requested null or undefined operation.");
             break;
@@ -214,5 +217,5 @@ f_execute(int argc, char* argv[])
         }
         return (error_code);
     }
-    return 1;
+    return -2;
 }

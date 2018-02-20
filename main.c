@@ -69,6 +69,9 @@ main(void)
     case 0:
         return 0;
 
+    case -2:
+        fprintf(stderr, "Unknown operation:  %s\n", argv[1]);
+        return -2;
     case -1:
         puterr("Insufficient operands.");
         return -1;
