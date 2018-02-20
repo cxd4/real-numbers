@@ -78,6 +78,8 @@ strtor(const char* str)
         result = 1 / cos(strtor(str + 3) / 180 * pi());
     } else if (strncmp(str, "cot", 3) == 0) {
         result = 1 / tan(strtor(str + 3) / 180 * pi());
+    } else if (strncmp(str, "Ans", 3) == 0) {
+        result = r_result;
     } else {
         result = strtod(str, &new_offset);
         if (new_offset != str) {
@@ -117,7 +119,13 @@ strtoi(const char* str)
         fprintf(stderr, "Unchecked errno already set to %i.\n", errno);
         errno = 0;
     }
-    result = strtol(str, NULL, 0);
+
+    if (strncmp(str, "Ans", 3) == 0) {
+        result = i_result;
+    } else {
+        result = strtol(str, NULL, 0);
+    }
+
     if (errno == ERANGE) {
         fprintf(stderr, "Problem %i converting %s.\n", errno, str);
         errno = 0;
@@ -134,7 +142,13 @@ strtow(const char* str)
         fprintf(stderr, "Unchecked errno already set to %i.\n", errno);
         errno = 0;
     }
-    result = strtoul(str, NULL, 0);
+
+    if (strncmp(str, "Ans", 3) == 0) {
+        result = w_result;
+    } else {
+        result = strtoul(str, NULL, 0);
+    }
+
     if (errno == ERANGE) {
         fprintf(stderr, "Problem %i converting %s.\n", errno, str);
         errno = 0;
