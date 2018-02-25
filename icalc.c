@@ -329,7 +329,7 @@ int iasin(int argc, char* argv[])
 
     old_result = r_result;
     error_status = rasin(argc, argv);
-    answer = r_result * 180 / pi();
+    answer = to_degrees(r_result);
     r_result = old_result;
 
     i_result = ftoi_round(answer);
@@ -342,7 +342,7 @@ int iacos(int argc, char* argv[])
 
     old_result = r_result;
     error_status = racos(argc, argv);
-    answer = r_result * 180 / pi();
+    answer = to_degrees(r_result);
     r_result = old_result;
 
     i_result = ftoi_round(answer);
@@ -355,7 +355,7 @@ int iatan(int argc, char* argv[])
 
     old_result = r_result;
     error_status = ratan(argc, argv);
-    answer = r_result * 180 / pi();
+    answer = to_degrees(r_result);
     r_result = old_result;
 
     i_result = ftoi_round(answer);

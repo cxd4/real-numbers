@@ -67,6 +67,14 @@ fp_str_round_trip(void);
  */
 
 /*
+ * Since we don't want in-line expansion of the pi() function calls (partly
+ * to maintain small executable size), we are going to be calling some kind
+ * of function anyway when converting between radians and degrees.
+ */
+extern real to_degrees(real radians);
+extern real to_radians(real degrees);
+
+/*
  * Use puts()-style text printing using this function, which actually uses
  * fprintf() like the rest of the program to avoid linking in the puts() or
  * fputs() functions to keep the program file size down for platforms where

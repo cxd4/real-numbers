@@ -40,6 +40,27 @@ real pi(void)
 }
 
 real
+to_degrees(real radians)
+{
+    real degrees;
+
+    degrees  = 180;
+    degrees *= radians;
+    degrees /= pi();
+    return (degrees);
+}
+real
+to_radians(real degrees)
+{
+    real radians;
+
+    radians  = pi();
+    radians *= degrees;
+    radians /= 180;
+    return (radians);
+}
+
+real
 strtor(const char* str)
 {
     register real result;
@@ -63,17 +84,17 @@ strtor(const char* str)
         result = strtor(str + 4);
         result = (result < 0) ? -pow(-result, 1.0 / 3) : pow(result, 1.0 / 3);
     } else if (strncmp(str, "sin", 3) == 0) {
-        result = sin(strtor(str + 3) / 180 * pi());
+        result = sin(to_radians(strtor(str + 3)));
     } else if (strncmp(str, "cos", 3) == 0) {
-        result = cos(strtor(str + 3) / 180 * pi());
+        result = cos(to_radians(strtor(str + 3)));
     } else if (strncmp(str, "tan", 3) == 0) {
-        result = tan(strtor(str + 3) / 180 * pi());
+        result = tan(to_radians(strtor(str + 3)));
     } else if (strncmp(str, "csc", 3) == 0) {
-        result = 1 / sin(strtor(str + 3) / 180 * pi());
+        result = 1 / sin(to_radians(strtor(str + 3)));
     } else if (strncmp(str, "sec", 3) == 0) {
-        result = 1 / cos(strtor(str + 3) / 180 * pi());
+        result = 1 / cos(to_radians(strtor(str + 3)));
     } else if (strncmp(str, "cot", 3) == 0) {
-        result = 1 / tan(strtor(str + 3) / 180 * pi());
+        result = 1 / tan(to_radians(strtor(str + 3)));
     } else if (strncmp(str, "Ans", 3) == 0) {
         result = r_result;
     } else {
