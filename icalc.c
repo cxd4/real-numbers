@@ -84,13 +84,9 @@ int idivide(int argc, char* argv[])
     answer = strtoi(argv[1]);
     for (i = 2; i < argc; i++) {
         source = strtoi(argv[i]);
-#ifndef SIGFPE
-        if (source == 0) {
-            answer = (answer < 0) ? LONG_MIN : LONG_MAX;
-            continue;
-        } /* Geometric graphs of (n / x) draw best from this approximation. */
-#endif
         quotient = ldiv(answer, source);
+        if (quotient.rem != 0)
+            return 1;
         answer = quotient.quot;
     }
     i_result = answer;
@@ -107,10 +103,6 @@ int imodulo(int argc, char* argv[])
     answer = strtoi(argv[1]);
     for (i = 2; i < argc; i++) {
         source = strtoi(argv[i]);
-#ifndef SIGFPE
-        if (source == 0)
-            return 1;
-#endif
         quotient = ldiv(answer, source);
         answer = quotient.rem;
     }
@@ -124,10 +116,6 @@ int iabsval(int argc, char* argv[])
     if (argc < 2)
         return -1;
     source = strtoi(argv[1]);
-#ifndef SIGFPE
-    if (source == LONG_MIN)
-        return 1;
-#endif
     i_result = labs(source);
     return 0;
 }
@@ -149,10 +137,8 @@ int ipower(int argc, char* argv[])
         quotient.quot = 0; /* (b ^ -x) = 1/(b ^ x):  truncated to (int) = 0 */
         if (labs(base) == 1 && power == -1) /* ...unless base = +/- 1 */
             quotient.quot = base; /* 1 / -1 == -1; 1 / +1 == +1 */
-#ifdef SIGFPE
         else if (base == 0)
             quotient = ldiv(1L, base); /* one divided by zero */
-#endif
         i_result = quotient.quot;
     } else {
         answer = +1;

@@ -56,7 +56,7 @@ int wmultiply(int argc, char* argv[])
 }
 int wdivide(int argc, char* argv[])
 {
-    whole_number answer, source;
+    whole_number answer, source, old_answer;
     register int i;
 
     if (argc < 3)
@@ -66,7 +66,10 @@ int wdivide(int argc, char* argv[])
         source = strtow(argv[i]);
         if (source == 0)
             return 1;
+        old_answer = answer;
         answer /= source;
+        if (old_answer != answer * source)
+            return 1; /* loss of precision from integer divides */
     }
     w_result = answer;
     return 0;
