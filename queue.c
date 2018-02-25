@@ -155,6 +155,9 @@ static const char ops[][8] = {
     "arcsin",
     "arccos",
     "arctan",
+    "log",
+
+    "ln",
 
     "exit" /* Just exit the command queue loop (if there is one). */
 };

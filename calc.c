@@ -405,6 +405,26 @@ int ratan(int argc, char* argv[])
     r_result = answer;
     return 0;
 }
+int rlog(int argc, char* argv[])
+{
+    real x, ten_to_the_power_of_x;
+
+    if (argc < 2)
+        return -1;
+    ten_to_the_power_of_x = strtor(argv[1]);
+    r_result = x = log10(ten_to_the_power_of_x);
+    return 0;
+}
+int rln(int argc, char* argv[])
+{
+    real x, e_to_the_power_of_x;
+
+    if (argc < 2)
+        return -1;
+    e_to_the_power_of_x = strtor(argv[1]);
+    r_result = x = log(e_to_the_power_of_x);
+    return 0;
+}
 
 int rexit(int argc, char* argv[])
 {
@@ -445,6 +465,9 @@ const math_operation op_functions[] = {
     rasin    , iasin    , wasin    ,
     racos    , iacos    , wacos    ,
     ratan    , iatan    , watan    ,
+    rlog     , inull    , wnull    ,
+
+    rln      , inull    , wnull    ,
 
     rexit    , iexit    , wexit    ,
 };
