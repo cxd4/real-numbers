@@ -45,10 +45,6 @@ strtor(const char* str)
     register real result;
     char* new_offset;
 
-    if (errno == ERANGE) {
-        fprintf(stderr, "Unchecked errno already set to %i.\n", errno);
-        errno = 0;
-    }
     if (str[0] == '\0') {
         result = 0;
     } else if (str[0] == 'e') {
@@ -115,11 +111,6 @@ strtoi(const char* str)
 {
     register integer result;
 
-    if (errno == ERANGE) {
-        fprintf(stderr, "Unchecked errno already set to %i.\n", errno);
-        errno = 0;
-    }
-
     if (strncmp(str, "Ans", 3) == 0) {
         result = i_result;
     } else {
@@ -137,11 +128,6 @@ whole_number
 strtow(const char* str)
 {
     register whole_number result;
-
-    if (errno == ERANGE) {
-        fprintf(stderr, "Unchecked errno already set to %i.\n", errno);
-        errno = 0;
-    }
 
     if (strncmp(str, "Ans", 3) == 0) {
         result = w_result;
