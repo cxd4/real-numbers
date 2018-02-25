@@ -147,6 +147,7 @@ int rfloor(int argc, char* argv[])
 int rpower(int argc, char* argv[])
 {
     real answer, source;
+    int is_odd_root;
     register int i;
 
     if (argc < 3)
@@ -154,6 +155,9 @@ int rpower(int argc, char* argv[])
     answer = strtor(argv[1]);
     for (i = 2; i < argc; i++) {
         source = strtor(argv[i]);
+        is_odd_root = (source == floor(source)) ? 1 : 0;
+        if (!is_odd_root && answer < 0)
+            return 1; /* Even-roots of negatives entail complex numbers. */
         answer = pow(answer, source);
     }
     r_result = answer;
@@ -197,7 +201,9 @@ int rroot(int argc, char* argv[])
         while (source != floor(source))
             source *= 10;
         is_odd_root = ((integer)(source) % 2 != 0) ? 1 : 0;
-        negative_radicand_hack = is_odd_root && (answer < 0 ? 1 : 0);
+        if (!is_odd_root && answer < 0)
+            return 1; /* complex numbers not supported */
+        negative_radicand_hack = (is_odd_root && (answer < 0)) ? 1 : 0;
         if (negative_radicand_hack)
             answer = -answer;
         answer = pow(answer, 1 / index); /* pow(-8, 1/3) is NaN; cbrt(-8) = 2 */
