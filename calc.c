@@ -415,6 +415,36 @@ int rlog(int argc, char* argv[])
     r_result = x = log10(ten_to_the_power_of_x);
     return 0;
 }
+int rsinh(int argc, char* argv[])
+{
+    real x;
+
+    if (argc < 2)
+        return -1;
+    x = strtor(argv[1]);
+    r_result = sinh(x);
+    return 0;
+}
+int rcosh(int argc, char* argv[])
+{
+    real x;
+
+    if (argc < 2)
+        return -1;
+    x = strtor(argv[1]);
+    r_result = cosh(x);
+    return 0;
+}
+int rtanh(int argc, char* argv[])
+{
+    real x;
+
+    if (argc < 2)
+        return -1;
+    x = strtor(argv[1]);
+    r_result = tanh(x);
+    return 0;
+}
 int rln(int argc, char* argv[])
 {
     real x, e_to_the_power_of_x;
@@ -467,6 +497,9 @@ const math_operation op_functions[] = {
     ratan    , iatan    , watan    ,
     rlog     , inull    , wnull    ,
 
+    rsinh    , inull    , wnull    ,
+    rcosh    , inull    , wnull    ,
+    rtanh    , inull    , wnull    ,
     rln      , inull    , wnull    ,
 
     rexit    , iexit    , wexit    ,

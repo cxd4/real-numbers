@@ -36,6 +36,9 @@ extern int rasin    (int argc, char* argv[]);
 extern int racos    (int argc, char* argv[]);
 extern int ratan    (int argc, char* argv[]);
 extern int rlog     (int argc, char* argv[]);
+extern int rsinh    (int argc, char* argv[]);
+extern int rcosh    (int argc, char* argv[]);
+extern int rtanh    (int argc, char* argv[]);
 extern int rln      (int argc, char* argv[]);
 
 /*
@@ -72,6 +75,9 @@ extern int iasin    (int argc, char* argv[]);
 extern int iacos    (int argc, char* argv[]);
 extern int iatan    (int argc, char* argv[]);
 /* not really useful:  ilog() */
+/* not really useful:  isinh() */
+/* not really useful:  icosh() */
+/* not really useful:  itanh() */
 /* not really useful:  iln() */
 
 /*
@@ -108,6 +114,9 @@ extern int wasin    (int argc, char* argv[]);
 extern int wacos    (int argc, char* argv[]);
 extern int watan    (int argc, char* argv[]);
 /* not really useful:  wlog() */
+/* not really useful:  wsinh() */
+/* not really useful:  wcosh() */
+/* not really useful:  wtanh() */
 /* not really useful:  wln() */
 
 /*
