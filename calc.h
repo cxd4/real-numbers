@@ -47,7 +47,18 @@ extern int rln      (int argc, char* argv[]);
 #ifdef _WIN64
 typedef long long       integer; /* Microsoft's ABI is LLP64. */
 #undef  strtol
-#define strtol strtoll
+#undef  labs
+#define strtol  _strtoi64
+#define labs    _abs64
+
+#undef  ldiv
+#define ldiv    div_llp64
+#define ldiv_t  div_t_llp64
+typedef struct {
+    integer quot;
+    integer rem;
+} div_t_llp64;
+extern ldiv_t div_llp64(integer dividend, integer divisor);
 #else
 typedef long            integer;
 #endif
@@ -86,7 +97,7 @@ extern int iatan    (int argc, char* argv[]);
 #ifdef _WIN64
 typedef unsigned long long      whole_number;
 #undef  strtoul
-#define strtoul strtoull
+#define strtoul _strtoui64
 #else
 typedef unsigned long   whole_number;
 #endif

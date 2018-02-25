@@ -1,11 +1,11 @@
 #include <float.h>
 #include <signal.h>
 
-#include "calc.h"
-#include "strtor.h"
-
 /* labs(), ldiv(), malloc(), free(), calloc(), qsort(), exit() */
 #include <stdlib.h>
+
+#include "calc.h"
+#include "strtor.h"
 
 #include <math.h>
 #include <limits.h>
@@ -27,6 +27,29 @@ static integer ftoi_round(real constant)
         answer = (fractional_part < +.5) ? floor(constant) : ceil(constant);
     return (integer)(answer);
 }
+#ifdef _WIN64
+ldiv_t div_llp64(integer dividend, integer divisor)
+{
+    div_t_llp64 answer;
+
+    if (divisor == 0) {
+#ifdef SIGFPE
+        raise(SIGFPE); /* This exception will be recovered from in main.c. */
+#endif
+        answer.rem = dividend; /* If the raised signal is ignored, hack on. */
+        if (dividend < 0)
+            answer.quot = LLONG_MIN;
+        else if (dividend == 0)
+            answer.quot = 0*1 + 1; /* Any random value here can work. */
+        else
+            answer.quot = LLONG_MAX;
+    } else {
+        answer.quot = dividend / divisor;
+        answer.rem  = dividend % divisor;
+    }
+    return (answer);
+}
+#endif
 
 int iadd(int argc, char* argv[])
 {
