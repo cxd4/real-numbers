@@ -79,7 +79,7 @@ op_queue(void)
                 j += 1;
             arg_length = strlen(user_input + j) + sizeof("");
 
-            optv[opti] = (char*)malloc(arg_length);
+            optv[opti] = (char*)realloc(NULL, arg_length);
             if (optv[opti] == NULL) {
                 puterr(not_enough_RAM);
                 return 1;

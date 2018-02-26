@@ -281,7 +281,7 @@ int rmedian(int argc, char* argv[])
     if (argc < 2)
         return -1;
     limit = (unsigned int)(argc) - 1; /* argc isn't negative, so this fits. */
-    constants = (real*)malloc(sizeof(real) * limit);
+    constants = (real*)realloc(NULL, sizeof(real) * limit);
     if (constants == NULL)
         return 1;
 
@@ -309,7 +309,7 @@ int rmode(int argc, char* argv[])
     if (argc < 2)
         return -1;
     limit = (unsigned int)(argc) - 1;
-    constants = (real*)malloc(sizeof(real) * limit);
+    constants = (real*)realloc(NULL, sizeof(real) * limit);
     if (constants == NULL)
         return 1;
 

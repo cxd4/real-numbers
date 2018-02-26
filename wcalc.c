@@ -247,7 +247,7 @@ int wmedian(int argc, char* argv[])
     if (argc < 2)
         return -1;
     limit = (unsigned int)(argc) - 1; /* argc isn't negative, so this fits. */
-    constants = (whole_number*)malloc(sizeof(whole_number) * limit);
+    constants = (whole_number*)realloc(NULL, sizeof(whole_number) * limit);
     if (constants == NULL)
         return 1;
 
@@ -275,7 +275,7 @@ int wmode(int argc, char* argv[])
     if (argc < 2)
         return -1;
     limit = (unsigned int)(argc) - 1;
-    constants = (whole_number*)malloc(sizeof(whole_number) * limit);
+    constants = (whole_number*)realloc(NULL, sizeof(whole_number) * limit);
     if (constants == NULL)
         return 1;
 

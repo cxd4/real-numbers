@@ -1,7 +1,7 @@
 #include <float.h>
 #include <signal.h>
 
-/* labs(), ldiv(), malloc(), free(), calloc(), qsort(), exit() */
+/* labs(), ldiv(), realloc(), free(), calloc(), qsort(), exit() */
 #include <stdlib.h>
 
 #include "calc.h"
@@ -246,7 +246,7 @@ int imedian(int argc, char* argv[])
     if (argc < 2)
         return -1;
     limit = (unsigned int)(argc) - 1; /* argc isn't negative, so this fits. */
-    constants = (integer*)malloc(sizeof(integer) * limit);
+    constants = (integer*)realloc(NULL, sizeof(integer) * limit);
     if (constants == NULL)
         return 1;
 
@@ -274,7 +274,7 @@ int imode(int argc, char* argv[])
     if (argc < 2)
         return -1;
     limit = (unsigned int)(argc) - 1;
-    constants = (integer*)malloc(sizeof(integer) * limit);
+    constants = (integer*)realloc(NULL, sizeof(integer) * limit);
     if (constants == NULL)
         return 1;
 
