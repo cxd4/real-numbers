@@ -67,7 +67,7 @@ op_queue(void)
 
         if (optc == 0)
             continue;
-        optv = (char**)calloc((size_t)optc, sizeof(void*));
+        optv = (char**)realloc(NULL, (size_t)optc * sizeof(void**));
         if (optv == NULL) {
             puterr(not_enough_RAM);
             break;

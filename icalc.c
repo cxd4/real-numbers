@@ -1,7 +1,7 @@
 #include <float.h>
 #include <signal.h>
 
-/* labs(), ldiv(), realloc(), free(), calloc(), qsort(), exit() */
+/* labs(), ldiv(), realloc(), free(), qsort(), exit() */
 #include <stdlib.h>
 
 #include "calc.h"
@@ -287,11 +287,13 @@ int imode(int argc, char* argv[])
         if (constants[i] != constants[i - 1])
             ++(number_of_unique_entries);
     unique_numbers = (integer_list*)
-        calloc(number_of_unique_entries, sizeof(integer_list));
+        realloc(NULL, number_of_unique_entries * sizeof(integer_list));
     if (unique_numbers == NULL) {
         free(constants);
         return 1;
     }
+    for (j = 0; j < number_of_unique_entries; j++)
+        unique_numbers[j].repeats = 0;
 
     unique_numbers[0].constant = constants[0];
     for (j = 0, i = 1; i < limit; i++)
