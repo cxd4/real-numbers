@@ -41,7 +41,7 @@ op_queue(void)
                 break;
             }
 
-            if (character == EOF || feof(stdin) || ferror(stdin)) {
+            if (character == EOF) {
                 puterr("Error while uploading user input.");
                 return 1;
             }
