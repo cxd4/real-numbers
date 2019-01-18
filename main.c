@@ -4,6 +4,7 @@
 #include "queue.h"
 #include "strtor.h"
 
+#include <errno.h>
 #include <signal.h>
 #include <setjmp.h>
 
@@ -81,6 +82,15 @@ main(void)
     case +2:
         puterr("Requested null or undefined operation.");
         return 2;
+
+    case EDOM:
+        puterr("Input does not conform to the function's domain.");
+        errno = 0;
+        break;
+    case ERANGE:
+        puterr("Output does not conform to the function's range.");
+        errno = 0;
+        break;
     default:
         fprintf(stderr, "Unknown operation error:  %i.\n", status_code);
     }

@@ -5,6 +5,8 @@
 #include <limits.h>
 #include <string.h>
 
+#include <errno.h>
+
 #include "queue.h"
 #include "strtor.h"
 
@@ -113,6 +115,15 @@ op_queue(void)
         case +2:
             puterr("Requested null or undefined operation.");
             break;
+
+        case EDOM:
+            puterr("Input does not conform to the function's domain.");
+            errno = 0;
+            break;
+        case ERANGE:
+            puterr("Output does not conform to the function's range.");
+            errno = 0;
+            break;
         default:
             fprintf(stderr, "Unknown operation error:  %i.\n", status_code);
             return (status_code);
@@ -217,7 +228,9 @@ f_execute(int argc, char* argv[])
                 "%.*Lg\n", fp_str_round_trip(), (long double)r_result
             );
         }
-        return (error_code);
+        if (error_code != 0)
+            return (error_code);
+        return (errno);
     }
     return -2;
 }
