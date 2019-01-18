@@ -420,7 +420,7 @@ int rlog(int argc, char* argv[])
 
     if (argc < 2)
         return -1;
-    if (argc > 4)
+    if (argc > 3)
         return +1; /* Recursive specifications are too loosely perceived. */
 
     if (argc == 2) { /* b is base 10 due to decimal-only FPUs in C89. */
