@@ -415,12 +415,23 @@ int ratan(int argc, char* argv[])
 }
 int rlog(int argc, char* argv[])
 {
-    real x, ten_to_the_power_of_x;
+    real b, x;
+    real b_to_the_power_of_x;
 
     if (argc < 2)
         return -1;
-    ten_to_the_power_of_x = strtor(argv[1]);
-    r_result = x = log10(ten_to_the_power_of_x);
+    if (argc > 4)
+        return +1; /* Recursive specifications are too loosely perceived. */
+
+    if (argc == 2) { /* b is base 10 due to decimal-only FPUs in C89. */
+        b_to_the_power_of_x = strtor(argv[1]);
+        x = log10(b_to_the_power_of_x); /* built-in ANSI log_base10(10^x) */
+    } else { /* b is user-defined.  We'll apply change-of-base formula. */
+        b = strtor(argv[1]);
+        b_to_the_power_of_x = strtor(argv[2]);
+        x = log(b_to_the_power_of_x) / log(b);
+    }
+    r_result = x;
     return 0;
 }
 int rsinh(int argc, char* argv[])
