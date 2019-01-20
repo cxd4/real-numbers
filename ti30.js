@@ -61,7 +61,7 @@ function ti_digit(digit) {
     is_evaluated_const = false;
     return;
 }
-function ti_decimal(digit) {
+function ti_decimal() {
     "use strict";
 
     if (is_evaluated_const === true) {
