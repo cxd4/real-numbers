@@ -27,63 +27,65 @@
 <tr>
  <td><button type="button" disabled>1/x</button></td>
  <td><button type="button" disabled>x&sup2;</button></td>
- <td><button type="button" disabled>&sup2;&radic;(x)</button></td>
+ <td><button type="button" disabled accesskey="r">&sup2;&radic;(x)</button></td>
  <td><button type="button" onclick="backspace()">DEL</button></td>
- <td><button type="button" onclick="ti_clear()">CLEAR</button></td>
+ <td><button type="button" onclick="ti_clear()" accesskey=" ">CLEAR</button></td>
 </tr>
 <tr>
- <td><button type="button" disabled>INV</button></td>
- <td><button type="button" disabled>sin</button></td>
- <td><button type="button" disabled>cos</button></td>
- <td><button type="button" disabled>tan</button></td>
- <td><button type="button" disabled>DRG</button></td>
+ <td><button type="button" disabled accesskey="i">INV</button></td>
+ <td><button type="button" disabled accesskey="s">sin</button></td>
+ <td><button type="button" disabled accesskey="c">cos</button></td>
+ <td><button type="button" disabled accesskey="t">tan</button></td>
+ <td><button type="button" disabled accesskey="d">DRG</button></td>
 </tr>
 <tr>
- <td><button type="button" onclick="ti_e()">e</button></td>
+ <td><button type="button" onclick="ti_e()" accesskey="e">e</button></td>
  <td><button type="button" disabled>EE</button></td>
  <td><button type="button" disabled>log</button></td>
- <td><button type="button" disabled>ln</button></td>
- <td><button type="button" disabled>^</button></td>
+ <td><button type="button" disabled accesskey="l">ln</button></td>
+ <td><button type="button" disabled accesskey="^">^</button></td>
 </tr>
 <tr>
- <td><button type="button" onclick="ti_pi()">&pi;</button></td>
- <td><button type="button" disabled>(x)!</button></td>
- <td><button type="button" onclick="leftParen()">(</button></td>
- <td><button type="button" onclick="rightParen()">)</button></td>
- <td><button type="button" onclick="ti_divide()">&divide;</button></td>
+ <td><button type="button" onclick="ti_pi()" accesskey="p">&pi;</button></td>
+ <td><button type="button" disabled accesskey="!">(x)!</button></td>
+ <td><button type="button" onclick="leftParen()" accesskey="(">(</button></td>
+ <td><button type="button" onclick="rightParen()" accesskey=")">)</button></td>
+ <td><button type="button" onclick="ti_divide()" accesskey="/">&divide;</button></td>
 </tr>
 <tr>
  <td><button type="button" onclick="ti_store()">STO</button></td>
- <td><button type="button" onclick="ti_digit(7)">7</button></td>
- <td><button type="button" onclick="ti_digit(8)">8</button></td>
- <td><button type="button" onclick="ti_digit(9)">9</button></td>
- <td><button type="button" onclick="ti_multiply()">&times;</button></td>
+ <td><button type="button" onclick="ti_digit(7)" accesskey="7">7</button></td>
+ <td><button type="button" onclick="ti_digit(8)" accesskey="8">8</button></td>
+ <td><button type="button" onclick="ti_digit(9)" accesskey="9">9</button></td>
+ <td><button type="button" onclick="ti_multiply()" accesskey="*">&times;</button></td>
 </tr>
 <tr>
  <td><button type="button" onclick="ti_recall()">RCL</button></td>
- <td><button type="button" onclick="ti_digit(4)">4</button></td>
- <td><button type="button" onclick="ti_digit(5)">5</button></td>
- <td><button type="button" onclick="ti_digit(6)">6</button></td>
- <td><button type="button" onclick="ti_subtract()">&minus;</button></td>
+ <td><button type="button" onclick="ti_digit(4)" accesskey="4">4</button></td>
+ <td><button type="button" onclick="ti_digit(5)" accesskey="5">5</button></td>
+ <td><button type="button" onclick="ti_digit(6)" accesskey="6">6</button></td>
+ <td><button type="button" onclick="ti_subtract()" accesskey="-">&minus;</button></td>
 </tr>
 <tr>
  <td><button type="button" disabled>SUM</button></td>
- <td><button type="button" onclick="ti_digit(1)">1</button></td>
- <td><button type="button" onclick="ti_digit(2)">2</button></td>
- <td><button type="button" onclick="ti_digit(3)">3</button></td>
- <td><button type="button" onclick="ti_add()">+</button></td>
+ <td><button type="button" onclick="ti_digit(1)" accesskey="1">1</button></td>
+ <td><button type="button" onclick="ti_digit(2)" accesskey="2">2</button></td>
+ <td><button type="button" onclick="ti_digit(3)" accesskey="3">3</button></td>
+ <td><button type="button" onclick="ti_add()" accesskey="+">+</button></td>
 </tr>
 <tr>
  <td><button type="button" disabled>EXC</button></td>
- <td><button type="button" onclick="ti_digit(0)">0</button></td>
- <td><button type="button" onclick="ti_decimal()">.</button></td>
- <td><button type="button" onclick="ti_negate()">+/&minus;</button></td>
- <td><button type="button" onclick="ti_equal()">=</button></td>
+ <td><button type="button" onclick="ti_digit(0)" accesskey="0">0</button></td>
+ <td><button type="button" onclick="ti_decimal()" accesskey=".">.</button></td>
+ <td><button type="button" onclick="ti_negate()" accesskey="n">+/&minus;</button></td>
+ <td><button type="button" onclick="ti_equal()" accesskey="=">=</button></td>
 </tr>
 </table>
 <div>Expression evaluated (shown for debugging purposes):</div>
 <div>[<span id="memory_debug">0</span>]</div>
 <div id="last_error">No errors yet.</div>
+
+<p>Keyboard shortcuts to the calculator buttons are implemented in a very simplified, HTML-internal way and may or may not work right for all of the buttons, depending on your web browser and operating system.  If you're lucky, all you have to do is hold the Alt key down (e.g., Alt+9 hits the 9 button on the calculator).</p>
 
 <p>All JavaScript on this website is freedom-respecting software.  <a href="/free-js.html" rel="jslicense">Learn more.</a></p>
 </body>
