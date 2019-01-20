@@ -28,25 +28,29 @@ var display = ""; /* line displayed while typing in digits or decimal point */
  */
 var is_evaluated_const = true;
 
-function round(value) {
+function set_tix_precision(value) {
     "use strict";
  // var figures = 8; /* original TI-30 calculator precision:  0.66666667 */
  // var figures = 10; /* TI-30X extended precision:  0.6666666667 */
     var figures = 15; // maximum accurate precision in JavaScript */
 
-    return Number(value.toFixed(figures)); /*
     return Number(
-        Math.round(value + "e" + figures) + "e-" + figures
-    ); */
+     // Math.round(value + "e" + figures) + "e-" + figures
+        value.toFixed(figures)
+    );
 }
 function ti_equal() {
     "use strict";
     var evaluation;
 
     document.getElementById("memory_debug").innerHTML = exp;
-    exp = "(" + exp + ")"; /* to prevent operator precedence from next input */
+    if (is_evaluated_const === false) {
+        exp = "(" + exp + ")";
+    }
+    is_evaluated_const = true;
+
     try {
-        evaluation = round(eval(exp));
+        evaluation = set_tix_precision(eval(exp));
 	document.getElementById("last_error").innerHTML = "Execution complete.";
     } catch(err) {
         evaluation = err.name;
@@ -54,7 +58,6 @@ function ti_equal() {
     }
 
     document.getElementById("memory_reg").innerHTML = evaluation;
-    is_evaluated_const = true;
     display = ""; /* Calculator blanks text input line after each evaluation. */
     return;
 }
