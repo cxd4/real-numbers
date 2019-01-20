@@ -53,10 +53,10 @@ function ti_equal() {
 
     try {
         evaluation = set_tix_precision(eval(exp));
-	document.getElementById("last_error").innerHTML = "Execution complete.";
+        document.getElementById("last_error").innerHTML = "Execution complete.";
     } catch(err) {
         evaluation = err.name;
-	document.getElementById("last_error").innerHTML = err.message;
+        document.getElementById("last_error").innerHTML = err.message;
     }
 
     document.getElementById("memory_reg").innerHTML = evaluation;
@@ -82,7 +82,7 @@ function ti_decimal() {
 
     if (is_evaluated_const === true) {
         display = "0.";
-	exp = "0.";
+        exp = "0.";
     } else {
         display += ".";
         exp += ".";
@@ -150,7 +150,7 @@ function ti_pi() {
     } else {
         if (last_char >= "0" && last_char <= "9") {
             exp += "*";
-	}
+        }
         exp += display;
     }
     is_evaluated_const = true;
@@ -168,7 +168,7 @@ function ti_e() {
     } else {
         if (last_char >= "0" && last_char <= "9") {
             exp += "*";
-	}
+        }
         exp += display;
     }
     is_evaluated_const = true;
