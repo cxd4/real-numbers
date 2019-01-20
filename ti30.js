@@ -19,7 +19,7 @@
  * code in this file.
  */
 
-var exp = 0;
+var exp = "0";
 var display = ""; /* line displayed while typing in digits or decimal point */
 
 /*
@@ -67,9 +67,9 @@ function ti_digit(digit) {
 
     display += digit;
     if (is_evaluated_const === true) {
-        exp = digit;
+        exp = String(digit);
     } else {
-        exp += digit;
+        exp += String(digit);
     }
     document.getElementById("memory_reg").innerHTML = display;
     is_evaluated_const = false;
