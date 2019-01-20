@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
+<head>
+<title>TI-30X Simulator</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="blank.css" type="text/css">
+<script type="text/javascript" src="ti30.js"></script>
+</head>
+
+<body>
+<p>This is a basic calculator program that actually is just a limited replication of the TI-30 calculator series, also emulated by the UNIX operating system utility program, <code>xcalc</code>.  For my full-featured calculator program native to your machine's hardware, refer to <a href="https://github.com/cxd4/real-numbers/">the original C code</a> I wrote this project in.  The below JavaScript application is just a limited port.</p>
+<p>If you need to graph functions or use advanced graphing calculator features, refer to the separate application <a href="/psolve/graph.html">here</a>.</p>
+<p>Buttons that are grayed out (disabled) correspond to TI-30 features I have not implemented (yet?).</p>
+
+<table class="b">
+<tr>
+ <td id="M_register"></td>
+ <td colspan="4" id="memory_reg" class="n">0</td>
+</tr>
+<tr>
+ <td class="t" id="inv"></td>
+ <td class="t" id="deg">DEG</td>
+ <td class="t" id="rad"></td>
+ <td class="t" id="grad"></td>
+ <td class="t" id="P"></td>
+</tr>
+
+<tr>
+ <td><button type="button" disabled>1/x</button></td>
+ <td><button type="button" disabled>x&sup2;</button></td>
+ <td><button type="button" disabled>&sup2;&radic;(x)</button></td>
+ <td><button type="button" disabled>DEL</button></td>
+ <td><button type="button" disabled>CLEAR</button></td>
+</tr>
+<tr>
+ <td><button type="button" disabled>INV</button></td>
+ <td><button type="button" disabled>sin</button></td>
+ <td><button type="button" disabled>cos</button></td>
+ <td><button type="button" disabled>tan</button></td>
+ <td><button type="button" disabled>DRG</button></td>
+</tr>
+<tr>
+ <td><button type="button" disabled>e</button></td>
+ <td><button type="button" disabled>EE</button></td>
+ <td><button type="button" disabled>log</button></td>
+ <td><button type="button" disabled>ln</button></td>
+ <td><button type="button" disabled>^</button></td>
+</tr>
+<tr>
+ <td><button type="button" disabled>&pi;</button></td>
+ <td><button type="button" disabled>(x)!</button></td>
+ <td><button type="button" disabled>(</button></td>
+ <td><button type="button" disabled>)</button></td>
+ <td><button type="button" disabled>&divide;</button></td>
+</tr>
+<tr>
+ <td><button type="button" disabled>STO</button></td>
+ <td><button type="button" onclick="ti_digit(7)">7</button></td>
+ <td><button type="button" onclick="ti_digit(8)">8</button></td>
+ <td><button type="button" onclick="ti_digit(9)">9</button></td>
+ <td><button type="button" disabled>&times;</button></td>
+</tr>
+<tr>
+ <td><button type="button" disabled>RCL</button></td>
+ <td><button type="button" onclick="ti_digit(4)">4</button></td>
+ <td><button type="button" onclick="ti_digit(5)">5</button></td>
+ <td><button type="button" onclick="ti_digit(6)">6</button></td>
+ <td><button type="button" disabled>&minus;</button></td>
+</tr>
+<tr>
+ <td><button type="button" disabled>SUM</button></td>
+ <td><button type="button" onclick="ti_digit(1)">1</button></td>
+ <td><button type="button" onclick="ti_digit(2)">2</button></td>
+ <td><button type="button" onclick="ti_digit(3)">3</button></td>
+ <td><button type="button" disabled>+</button></td>
+</tr>
+<tr>
+ <td><button type="button" disabled>EXC</button></td>
+ <td><button type="button" onclick="ti_digit(0)">0</button></td>
+ <td><button type="button" onclick="ti_decimal()">.</button></td>
+ <td><button type="button" disabled>+/&minus;</button></td>
+ <td><button type="button" onclick="ti_equal()">=</button></td>
+</tr>
+</table>
+<div>Expression evaluated (shown for debugging purposes):</div>
+<div>[<span id="memory_debug">0</span>]</div>
+<div id="last_error">No errors yet.</div>
+
+<p>All JavaScript on this website is freedom-respecting software.  <a href="/free-js.html" rel="jslicense">Learn more.</a></p>
+</body>
+</html>

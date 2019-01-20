@@ -1,3 +1,7 @@
+# built binaries
+rc
+rc_debug
+
 # Prerequisites
 *.d
 

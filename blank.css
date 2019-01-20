@@ -1,0 +1,25 @@
+body {
+    background-color:  #000000;
+    color           :  #FFFFFF;
+    font-family     :  Courier New, Courier, monospace;
+ /* white-space     :  pre; */
+}
+
+button {
+    width:  64px;
+    border-radius:  32px;
+}
+table {
+    margin-left :  auto;
+    margin-right:  auto;
+}
+.b { /* bordered with visible color */
+    border:  solid 1px red;
+}
+
+td.n { /* numerical data */
+    text-align:  right;
+}
+td.t { /* titular data */
+    text-align:  center;
+}
