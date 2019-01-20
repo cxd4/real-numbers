@@ -122,6 +122,20 @@ function ti_divide() {
     is_evaluated_const = false;
     return;
 }
+function ti_negate() {
+    "use strict";
+
+    display = String(-Number(document.getElementById("memory_reg").innerHTML));
+    if (is_evaluated_const === true) {
+        exp = "-(" + exp + ")";
+    } else {
+        exp += "*-1";
+    }
+    document.getElementById("memory_reg").innerHTML = display;
+    display = ""; // 2019.01.20 rjs:  annoying hack...need to rewrite all this
+    is_evaluated_const = true;
+    return;
+}
 
 function ti_pi() {
     "use strict";
