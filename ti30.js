@@ -141,14 +141,14 @@ function ti_negate() {
 
 function ti_pi() {
     "use strict";
-    var last_character = exp[exp.length - 1];
+    var last_char = exp[exp.length - 1];
 
     display = String(Math.PI);
     document.getElementById("memory_reg").innerHTML = display;
     if (is_evaluated_const === true) {
         exp = display;
     } else {
-        if (last_character >= "0" || last_character <= "9") {
+        if (last_char >= "0" && last_char <= "9") {
             exp += "*";
 	}
         exp += display;
@@ -159,14 +159,14 @@ function ti_pi() {
 }
 function ti_e() {
     "use strict";
-    var last_character = exp[exp.length - 1];
+    var last_char = exp[exp.length - 1];
 
     display = String(Math.E);
     document.getElementById("memory_reg").innerHTML = display;
     if (is_evaluated_const === true) {
         exp = display;
     } else {
-        if (last_character >= "0" || last_character <= "9") {
+        if (last_char >= "0" && last_char <= "9") {
             exp += "*";
 	}
         exp += display;
@@ -241,6 +241,7 @@ function ti_store() {
 }
 function ti_recall() {
     "use strict";
+    var last_char = exp[exp.length - 1];
 
     display = String(stored_reg);
     if (stored_reg === null) {
@@ -249,6 +250,8 @@ function ti_recall() {
     document.getElementById("memory_reg").innerHTML = display;
 
     if (is_evaluated_const === true) {
+        exp = display;
+    } else if (last_char >= '0' && last_char <= '9') {
         exp = display;
     } else {
         exp += display;
