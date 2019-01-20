@@ -28,6 +28,17 @@ var display = ""; /* line displayed while typing in digits or decimal point */
  */
 var is_evaluated_const = true;
 
+function round(value) {
+    "use strict";
+ // var figures = 8; /* original TI-30 calculator precision:  0.66666667 */
+ // var figures = 10; /* TI-30X extended precision:  0.6666666667 */
+    var figures = 15; // maximum accurate precision in JavaScript */
+
+    return Number(value.toFixed(figures)); /*
+    return Number(
+        Math.round(value + "e" + figures) + "e-" + figures
+    ); */
+}
 function ti_equal() {
     "use strict";
     var evaluation;
@@ -35,7 +46,7 @@ function ti_equal() {
     document.getElementById("memory_debug").innerHTML = exp;
     exp = "(" + exp + ")"; /* to prevent operator precedence from next input */
     try {
-        evaluation = eval(exp);
+        evaluation = round(eval(exp));
 	document.getElementById("last_error").innerHTML = "Execution complete.";
     } catch(err) {
         evaluation = err.name;
