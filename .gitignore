@@ -3,6 +3,7 @@ realcalc
 execute
 calc
 rc
+rc_debug
 exec
 cc
 
