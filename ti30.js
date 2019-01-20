@@ -174,6 +174,31 @@ function ti_e() {
     return;
 }
 
+function leftParen() {
+    "use strict";
+
+    display = "";
+    if (is_evaluated_const === true) {
+        exp = "(";
+    } else {
+        exp += "(";
+    }
+    is_evaluated_const = false;
+    return;
+}
+function rightParen() {
+    "use strict";
+
+    display = "";
+    if (is_evaluated_const === true) {
+        exp = ")";
+    } else {
+        exp += ")";
+    }
+    is_evaluated_const = false;
+    return;
+}
+
 /*
  * Instead of emulating TI-30 clear and off buttons, I prefer we have a
  * backspace button and a reset button.
