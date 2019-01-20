@@ -159,3 +159,28 @@ function ti_e() {
     display = "";
     return;
 }
+
+/*
+ * Instead of emulating TI-30 clear and off buttons, I prefer we have a
+ * backspace button and a reset button.
+ */
+function ti_clear() {
+    "use strict";
+
+    display = "";
+    exp = "";
+    document.getElementById("memory_reg").innerHTML = "0";
+    return;
+}
+function backspace() {
+    "use strict";
+
+    if (is_evaluated_const === true || display.length < 1 || exp.length < 2) {
+        ti_clear();
+        return;
+    }
+    display = display.substring(1);
+    exp = exp.substring(1);
+    document.getElementById("memory_reg").innerHTML = display;
+    return;
+}
