@@ -20,6 +20,7 @@
  */
 
 var exp = 0;
+var display = ""; /* line displayed while typing in digits or decimal point */
 
 /*
  * Basically, this lets us check if the current expression in the calculator
@@ -32,6 +33,7 @@ function ti_equal() {
     var evaluation;
 
     document.getElementById("memory_debug").innerHTML = exp;
+    exp = "(" + exp + ")"; /* to prevent operator precedence from next input */
     try {
         evaluation = eval(exp);
 	document.getElementById("last_error").innerHTML = "Execution complete.";
@@ -42,30 +44,67 @@ function ti_equal() {
 
     document.getElementById("memory_reg").innerHTML = evaluation;
     is_evaluated_const = true;
+    display = ""; /* Calculator blanks text input line after each evaluation. */
     return;
 }
 
 function ti_digit(digit) {
     "use strict";
 
-    if (is_evaluated_const === false) {
-        exp += digit;
+    display += digit;
+    if (is_evaluated_const === true) {
+        exp = digit;
     } else {
-        exp = "" + digit;
+        exp += digit;
     }
-    document.getElementById("memory_reg").innerHTML = exp;
+    document.getElementById("memory_reg").innerHTML = display;
     is_evaluated_const = false;
     return;
 }
 function ti_decimal(digit) {
     "use strict";
 
-    if (is_evaluated_const === false) {
-        exp += ".";
+    if (is_evaluated_const === true) {
+        display = "0.";
+	exp = "0.";
     } else {
-        exp = "0.";
-        is_evaluated_const = false;
+        display += ".";
+        exp += ".";
     }
-    document.getElementById("memory_reg").innerHTML = exp;
+    is_evaluated_const = false;
+    document.getElementById("memory_reg").innerHTML = display;
+    return;
+}
+
+function ti_add() {
+    "use strict";
+
+    exp += " + ";
+    display = "";
+    is_evaluated_const = false;
+    return;
+}
+function ti_subtract() {
+    "use strict";
+
+    exp += " - ";
+    display = "";
+    is_evaluated_const = false;
+    return;
+}
+function ti_multiply() {
+    "use strict";
+
+    exp += "*";
+    display = "";
+    is_evaluated_const = false;
+    return;
+}
+function ti_divide() {
+    "use strict";
+
+    exp += "/";
+    display = "";
+    is_evaluated_const = false;
     return;
 }
