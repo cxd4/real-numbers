@@ -141,3 +141,21 @@ function ti_pi() {
     display = "";
     return;
 }
+function ti_e() {
+    "use strict";
+    var last_character = exp[exp.length - 1];
+
+    display = String(Math.E);
+    document.getElementById("memory_reg").innerHTML = display;
+    if (is_evaluated_const === true) {
+        exp = display;
+    } else {
+        if (last_character >= "0" || last_character <= "9") {
+            exp += "*";
+	}
+        exp += display;
+    }
+    is_evaluated_const = true;
+    display = "";
+    return;
+}
